@@ -5,6 +5,8 @@ Architecture
 ------------
 ![Web Controller Architecture](https://github.com/LumineerLabs/Web-Controller-Generator/raw/master/mdsrc/architecture.png)
 
+![Generator Architecture](https://github.com/LumineerLabs/Web-Controller-Generator/raw/master/mdsrc/generator_architecture.png)
+
 ### Web Client -> Web Server ###
 Communication from the client to the server is handled one of two ways. The default is to send updates via AJAX calls to a REST service as the user changes values. The other is to send an update of the entire state of the data values when the user clicks a button. The method used is determined by the platform configuration.
 
@@ -19,11 +21,22 @@ Model Files
 The model files define the data that your application uses. These files are used for generating the web interface, API, data store, and language bindings. Values are defined hierarchically.
 
 ### Data ###
+A data value represents some value in an application on the server that can be displayed and potentially controlled via the web interface. Each is given a name. The default type is int32.
+
+Example:
+```YAML
+Voltages:
+    Voltage_1: ~
+    Voltage_2: ~
+    Voltage_3: ~
+```
 
 #### Attributes ####
 There are several attributes that can be added to data definitions. They affect what controls are generated for a given value and input validation. If you want to define a value with the name of an attribute, prefix it with ^, this is the escape character.
 
 ##### Type #####
+Types are fixed width wherever possible. 
+
 | Model Type | C/C++ Type  | Python Type |
 |------------|-------------|-------------|
 | uint8      | uint8_t     |             |
@@ -75,8 +88,79 @@ Value:
     InitialValue: 65536
 ```
 
+##### ReadOnly #####
+When set to True his attribute marks a value as read only. It will make the front end just display the value and will provide no mechanisms for remotey modifying it. If not specified, this defaults to False.
+
+Example:
+```YAML
+voltage_1:
+    ReadOnly: True
+```
+
+##### History #####
+This attribute specifies that the server should maintain historical data. The system will maintain a record of each time the value changed and when it was changed (nanoseconds since boot).
+
+Example:
+```YAML
+voltage_1:
+    Type: f32
+    History: ~
+```
+
+###### Depth ######
+The attribute specifies number of samples to keep on the server. If not specified, this defaults to 256.
+
+Example:
+```YAML
+voltage_1:
+    Type: f32
+    History:
+        Depth: 512
+```
+
+###### TimeWindow ######
+This attribute specifies the amount of history to view in seconds. If this is not specified, the graph will display any data that presented by the server. If ClientHistoryDepth is not specified, the client will automatically store any samples not older than the value specified in TimeWindow. If it is specified, the client will limit the number of samples to the value specified.
+
+Example:
+```YAML
+voltage_1:
+    Type: f32
+    History:
+        Depth: 512
+        TimeWindow: 30
+```
+
+###### ClientHistoryDepth ######
+This attritube specifies how much additional history to store on the client. If set to 0, the client will only display the history depth as given by the server. If set to any other value, the total history on the client will be the server history depth + the value specified here.
+
+```YAML
+voltage_1:
+    Type: f32
+    History:
+        Depth: 512
+        ClientHistoryDepth: 4096
+```
+
+###### GraphID ######
+This attribute specifies and identifier that can be used to group multiple values' histories onto a single graph. The settings for the graph display will be pulled from the first History defintion with a given graph ID.
+
+Example:
+```YAML
+voltage_1:
+    Type: f32
+    History:
+        GraphID: Voltages
+voltage_2:
+    Type: f32
+    History:
+        GraphID: Voltages
+```
+
+###### Display ######
+This attribute controls various aspects of the graph display.
+
 ##### OptionList #####
-This attribute specifies a list of valid values for this value.
+This attribute specifies a list of valid values for this value. It will cause a combo box to be generated.
 
 Example
 ```YAML
