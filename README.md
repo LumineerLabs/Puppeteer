@@ -3,9 +3,8 @@ Web Controller Generator
 
 Architecture
 ------------
+### Controller Architecture ###
 ![Web Controller Architecture](https://github.com/LumineerLabs/Web-Controller-Generator/raw/master/mdsrc/architecture.png)
-
-![Generator Architecture](https://github.com/LumineerLabs/Web-Controller-Generator/raw/master/mdsrc/generator_architecture.png)
 
 ### Web Client -> Web Server ###
 Communication from the client to the server is handled one of two ways. The default is to send updates via AJAX calls to a REST service as the user changes values. The other is to send an update of the entire state of the data values when the user clicks a button. The method used is determined by the platform configuration.
@@ -15,6 +14,11 @@ Communication from the server to the client occurs when the control application 
 
 ### Web Server <-> Control Application ###
 This communication path is handled through a generated API for the particular platform and language binding that has been selected. Whether or not an update to the data store from the web API triggers an event handler is configurable in the target definition.
+
+### Code Generation Architecture ###
+![Generator Architecture](https://github.com/LumineerLabs/Web-Controller-Generator/raw/master/mdsrc/generator_architecture.png)
+
+To generate a web controller the user needs to define a model file and target file. The model file contains descriptions of all of the data values that can be viewed and controlled via the web controller. The target file describes the platform the webserver will run on and the binding to the control application. The generator will combine the values in these files with templates for each part of the controller and generate the appropriate files for deployment to the target. The definitinos in the target file map to the templates. The generator is generic, relying on templates to provide all target and language specific code. Thus, adding a new target is as simple as adding new templates and referencing it in a target file.
 
 Model Files
 -----------
