@@ -67,6 +67,16 @@ Value:
 ##### OptionGroup #####
 This attribute applies to paths. It will cause the front end to generate a radio button group for the values underneath. All values in an OptionGroup path _must_ be bools (and will be treated that way by default). If they are not the OptionGroup will be ignored and a regular path will be generated.
 
+Example:
+```YAML
+Path1:
+    Path2:
+        OptionGroup: ~
+        Value1: ~
+        Value2: ~
+        Value3: ~
+```
+
 #### Paths ####
 Data values are defined hierarchically. Nodes can either be paths or values. A path node cannot be treated as a value.
 
