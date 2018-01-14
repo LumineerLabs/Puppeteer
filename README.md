@@ -1,5 +1,6 @@
-Web Controller Generator
-========================
+Puppeteer
+=========
+Puppeteer generates web interfaces for controlling and monitoring software running on remote devices. It is designed to focus on embedded devices and applications. For an already supported platform the user simply specifies some information about the data interface and the target platform they want to run it on and Puppeteer will take care of the rest.
 
 Architecture
 ------------
