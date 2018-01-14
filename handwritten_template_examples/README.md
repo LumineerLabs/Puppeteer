@@ -1,0 +1,1 @@
+This folder is for prototyping page layouts by hand. The handwritten code will be converted to templates.

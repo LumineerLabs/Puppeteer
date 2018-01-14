@@ -58,6 +58,8 @@ Types are fixed width wherever possible.
 | string     | wstring     |             |
 | color      | uint32_t    |             |
 
+[comment]: # (What other types do we want to add here? location mapping to google maps? image? video?)
+
 ##### Range #####
 The Range attribute allows the user to specify a valid range of input values. It will also generate a slider control for integer types and floating point types with a Step value. This attribute is only valid for decimal types.
 
