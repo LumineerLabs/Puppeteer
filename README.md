@@ -25,15 +25,29 @@ Model Files
 -----------
 The model files define the data that your application uses. These files are used for generating the web interface, API, data store, and language bindings. Values are defined hierarchically.
 
+### System Title ###
+The first YAML key is the system's title. Other keys parallel to the sysstem title in the hierarchy will be ignored.
+
+Example:
+```YAML
+Voltage Monitor: ~
+```
+
 ### Data ###
 A data value represents some value in an application on the server that can be displayed and potentially controlled via the web interface. Each is given a name. The default type is int32.
 
 Example:
 ```YAML
-Voltages:
-    Voltage_1: ~
-    Voltage_2: ~
-    Voltage_3: ~
+Voltage Monitor:
+    Voltages:
+        Voltage_1: ~
+        Voltage_2: ~
+        Voltage_3: ~
+    Status:
+        ADC_1: ~
+        ADC_2: ~
+        Application: ~
+        CPU: ~
 ```
 
 #### Attributes ####
@@ -59,7 +73,7 @@ Types are fixed width wherever possible.
 | string     | wstring     |             |
 | color      | uint32_t    |             |
 
-[comment]: # (What other types do we want to add here? location mapping to google maps? image? video?)
+[comment]: # (What other types do we want to add here? location mapping to google maps? image? video? external resources?)
 
 ##### Range #####
 The Range attribute allows the user to specify a valid range of input values. It will also generate a slider control for integer types and floating point types with a Step value. This attribute is only valid for decimal types.
@@ -163,9 +177,6 @@ voltage_2:
         GraphID: Voltages
 ```
 
-###### Display ######
-This attribute controls various aspects of the graph display.
-
 ##### OptionList #####
 This attribute specifies a list of valid values for this value. It will cause a combo box to be generated.
 
@@ -228,7 +239,34 @@ Path1:
             type: uint16
         color:
             type: color
+```
 
+##### Tabs #####
+This attribute specifies whether or not to generate a tab control for each of the paths specified under it. When set to true, the generator will use each of the next level paths as the name of a tab for display. Values under those paths will be hidden unless that tab is selected. When set to false, all values under a path are viewed on the same page separated and labeled just by text. If not specified, this defaults to false.
+
+Example:
+```YAML
+Path1:
+    Tabs: true
+    Paths2:
+        Value1: ~
+        Value2: ~
+    Paths3:
+        Value1: ~
+        Value2: ~
+```
+
+##### LinkToNewPage #####
+This attribute specifies whether or not to include the values under this path in the current page. If set to true, a new page will be generated for anything under this path. When set to false, all values under this path are included in the current page. If not specified, this defaults to false.
+
+Example:
+```YAML
+Path1:
+    Paths2:
+        LinkToNewPage: true
+        Value1: ~
+        Value2: ~
+    Paths3:
 ```
 
 #### Paths ####
