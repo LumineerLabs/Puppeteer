@@ -1,0 +1,219 @@
+body
+{
+    font-family: Open Sans,Helvetica,Arial,sans-serif;
+    background-color: #141414;
+    color: #d8d9da;
+}
+
+.droppable
+{
+    display: inline-block;
+}
+
+ul 
+{
+    list-style-type: none;
+}
+
+li
+{
+    float: left;
+    min-width: 100px;
+}
+
+.panel
+{
+    background-color: #1a1818;
+    position: relative;
+    border: 1px solid #292929;
+    margin: 5px;
+}
+
+.centered-panel
+{
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.ui-widget-header.text
+{
+    position: relative;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #d8d9da;
+    background-color: #1f1d1d;
+    text-align: center;
+    margin-top: 0;
+    border: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.ui-widget-header.toggle-text
+{
+    position: relative;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #d8d9da;
+    background-color: #1f1d1d;
+    text-align: center;
+    margin-top: 0;
+    border: 0;
+    padding-left: 6px;
+    padding-right: 12px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+
+.display-text
+{
+    color: #33b5e5;
+    text-align: center;
+    font-size: 100%;
+    font-weight: 700;
+    font-size: 3em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 12px;
+}
+
+input[type=text] 
+{
+    color: #33b5e5;
+    background-color: #2f2d2d;
+    text-align: center;
+    font-size: 100%;
+    font-weight: 350;
+    font-size: 2em;
+    width: 75%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    margin: 18px;
+    margin-top: 0px;
+}
+
+input[type=text]:focus 
+{
+    background-color: #014159;
+}
+
+.toggle-panel
+{
+    background-color: #1f1d1d;
+}
+
+.toggle
+{
+    /*padding-top: 75%;*/
+    display: inline-block;
+    border: 1px solid #33b5e5;
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+}
+
+.toggle-true
+{
+    background-color: #33b5e5;
+}
+
+.toggle-false
+{
+    background-color: #2f2d2d;
+}
+
+/* The switch - the box around the slider */
+.switch 
+{
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    
+    margin: 15px;
+    margin-top: 0px;
+}
+  
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+  
+/* The slider */
+.slider 
+{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #2f2d2d;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.slider:before 
+{
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #d8d9da;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+input:checked + .slider 
+{
+    background-color: #33b5e5;
+}
+  
+input:focus + .slider 
+{
+    box-shadow: 0 0 1px #33b5e5;
+}
+  
+input:checked + .slider:before
+{
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.nominal
+{
+    background-color: #587c0c
+}
+
+.warning
+{
+    background-color: #c1c13f
+}
+
+.error
+{
+    background-color: #94151b
+}
+
+.icheck
+{
+    display:block;
+}
+
+.radio-group
+{
+    margin: 15px;
+    margin-top: 0px;
+}
+
+.graph
+{
+    width: 100%;
+    height: 100%;
+}
