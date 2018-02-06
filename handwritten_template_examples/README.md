@@ -14,3 +14,6 @@ A puppeteer backend written in Node.js. To run, run "node server.js" in the node
 * puppeteer.js: the common puppeteer module, initilizes the generated code
 * puppeteer_data_model.js: the data classes/interfaces used by puppeteer
 * puppeteer_generated_data.js: this contains all of the application specific data definitions, this file will be generated from the data model yaml file
+
+### esp32-backend ###
+TODO: A puppeteer backend written in c++ for the ESP32 platform.
