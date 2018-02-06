@@ -1,95 +1,39 @@
-const SSE = require("sse-node"),
-      express = require("express"),
-      sleep = require("sleep");
+var puppeteer = require("./puppeteer");
 
-var app = express();
+puppeteer.init();
 
-app.use(express.static('../static-frontend'));
-
+// app specific stuff goes here!
 var lastHistoryX = 0;
 
-app.get("/sse", (req, res) => {
-    const client = SSE(req, res);
-    var running = true;
+setInterval(() => {
+    // update numbers
+    puppeteer.generated.data["rotxt"].value = Math.floor((Math.random() * 10) + 1);
+    puppeteer.generated.data["rochk"].value = Math.random() > .5;
 
-    // send all current data
-    // build history
-    var historyData = [];
-    for(var i = 0; i < 2 * Math.PI; i+= (2*Math.PI)/100)
+    var roll = Math.random();
+    if(roll > .75)
     {
-        historyData.push([i, Math.sin(i) + 1]);
-        lastHistoryX = i;
+        puppeteer.generated.data["roradio"].value = puppeteer.generated.RORADIOVALS.roradio_3;
     }
-    // add individual elements
-    var data = {
-        history: historyData,
-        rotxt: 5,
-        rochk: false,
-        roradio: "roradio_2",
-        roslide: 80
+    else if(roll > .5)
+    {
+        puppeteer.generated.data["roradio"].value = puppeteer.generated.RORADIOVALS.roradio_2;
+    }
+    else if(roll > .25)
+    {
+        puppeteer.generated.data["roradio"].value = puppeteer.generated.RORADIOVALS.roradio_1;
+    }
+    else
+    {
+        puppeteer.generated.data["roradio"].value = puppeteer.generated.RORADIOVALS.roradio_1;
     }
 
-    client.send(data, "Connect");
-    
-    client.onClose(() => {
-        console.log("Bye client!");
-        running = false;
-    });
+    puppeteer.generated.data["roslide"].value = Math.floor((Math.random() * 75) + 25);
 
-    setInterval(() => {
-        // update numbers
-        var obj = {
-            id: "rotxt",
-            rotxt: Math.floor((Math.random() * 10) + 1)
-        }
-        client.send(obj, "Update");
+}, 1000);
 
-        obj = {
-            id: "rochk",
-            rochk: Math.random() > .5
-        }
-        client.send(obj, "Update");
-
-        obj = {
-            id: "roradio",
-            roradio: null
-        }
-        var roll = Math.random();
-        if(roll > .75)
-        {
-            obj.roradio = "roradio_3";
-        }
-        else if(roll > .5)
-        {
-            obj.roradio = "roradio_2";
-        }
-        else if(roll > .25)
-        {
-            obj.roradio = "roradio_1";
-        }
-        else
-        {
-            obj.roradio = "roradio_0";
-        }
-        client.send(obj, "Update");
-
-        obj = {
-            id: "roslide",
-            roslide: Math.floor((Math.random() * 75) + 25)
-        }
-        roslide: 80
-        client.send(obj, "Update");
-    }, 1000);
-
-    setInterval(() => {
-        // update history
-        lastHistoryX += (2*Math.PI)/100;
-        var obj = {
-            id: "history",
-            history: [lastHistoryX, Math.sin(lastHistoryX) + 1]
-        }
-        client.send(obj, "Update");
-    }, 200);
-});
-
-app.listen(80);
+setInterval(() => {
+    // update history
+    lastHistoryX += (2*Math.PI)/100;
+    puppeteer.generated.data["history"].value = Math.sin(lastHistoryX) + 1;
+}, 200);

@@ -220,6 +220,23 @@ function generatedConnectFn(data)
   }
 
   $( "#" + obj["roradio"] ).iCheck('check');
+
+  $("#rwtxt").html(obj["rwtxt"]);
+
+  $( "#rwlide" ).val(obj["rwslide"]).trigger('change');;
+    
+  if(obj["rwchk"])
+  {
+      $( "#rwchk" ).removeClass("toggle-false");
+      $( "#rwchk" ).addClass("toggle-true");
+  }
+  else
+  {
+      $( "#rwchk" ).removeClass("toggle-true");
+      $( "#rwchk" ).addClass("toggle-false");
+  }
+
+  $( "#" + obj["rwradio"] ).iCheck('check');
 }
 
 function generatedUpdateFn(data)
@@ -259,6 +276,29 @@ function generatedUpdateFn(data)
       break;
     case "roslide":
       $( "#roslide" ).val(obj["roslide"]).trigger('change');;
+      break;
+    case "rwtxt":
+      $("#rwtxt").html(obj["rwtxt"]);
+      break;
+    case "rwchk":
+    {
+      if(obj["rwchk"])
+      {
+        $( "#rwchk" ).removeClass("toggle-false");
+        $( "#rwchk" ).addClass("toggle-true");
+      }
+      else
+      {
+        $( "#rwchk" ).removeClass("toggle-true");
+        $( "#rwchk" ).addClass("toggle-false");
+      }
+      break;
+    }
+    case "rwradio":
+      $( "#" + obj["rwradio"] ).iCheck('check');
+      break;
+    case "rwslide":
+      $( "#rwslide" ).val(obj["rwslide"]).trigger('change');;
       break;
   }
 }
