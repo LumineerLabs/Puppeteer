@@ -19,6 +19,7 @@ exports.RORADIOVALS =
 }
 
 var clients = [];
+var wsclients = [];
 
 exports.init = function(app)
 {
@@ -28,6 +29,7 @@ exports.init = function(app)
     module.exports.data["history"] = data_model.HistoryData(0, 100, (val) => 
     {
         var obj = {
+            type: "update",
             id: "history",
             history: val
         }
@@ -35,10 +37,15 @@ exports.init = function(app)
         {
             clients[i].send(obj, "Update");
         }
+        for(var i in wsclients)
+        {
+            wsclients[i].send(JSON.stringify(obj));
+        }
     });
     module.exports.data["rotxt"] = data_model.Datum(5, (val) => 
     {
         var obj = {
+            type: "update",
             id: "rotxt",
             rotxt: val
         }
@@ -46,10 +53,15 @@ exports.init = function(app)
         {
             clients[i].send(obj, "Update");
         }
+        for(var i in wsclients)
+        {
+            wsclients[i].send(JSON.stringify(obj));
+        }
     });
     module.exports.data["rochk"] = data_model.Datum(true, (val) => 
     {
         var obj = {
+            type: "update",
             id: "rochk",
             rochk: val
         }
@@ -57,10 +69,15 @@ exports.init = function(app)
         {
             clients[i].send(obj, "Update");
         }
+        for(var i in wsclients)
+        {
+            wsclients[i].send(JSON.stringify(obj));
+        }
     });
     module.exports.data["roradio"] = data_model.Datum(module.exports.RORADIOVALS.roradio_3, (val) => 
     {
         var obj = {
+            type: "update",
             id: "roradio",
             roradio: val
         }
@@ -68,10 +85,15 @@ exports.init = function(app)
         {
             clients[i].send(obj, "Update");
         }
+        for(var i in wsclients)
+        {
+            wsclients[i].send(JSON.stringify(obj));
+        }
     });
     module.exports.data["roslide"] = data_model.Datum(80, (val) => 
     {
         var obj = {
+            type: "update",
             id: "roslide",
             roslide: val
         }
@@ -79,12 +101,17 @@ exports.init = function(app)
         {
             clients[i].send(obj, "Update");
         }
+        for(var i in wsclients)
+        {
+            wsclients[i].send(JSON.stringify(obj));
+        }
     });
 
     // client -> server
     module.exports.data["rwtxt"] = data_model.Datum("", (val) => 
     {
         var obj = {
+            type: "update",
             id: "rwtxt",
             rwtxt: val
         }
@@ -92,10 +119,15 @@ exports.init = function(app)
         {
             clients[i].send(obj, "Update");
         }
+        for(var i in wsclients)
+        {
+            wsclients[i].send(JSON.stringify(obj));
+        }
     });
     module.exports.data["rwchk"] = data_model.Datum(true, (val) => 
     {
         var obj = {
+            type: "update",
             id: "rwchk",
             rwchk: val
         }
@@ -103,10 +135,15 @@ exports.init = function(app)
         {
             clients[i].send(obj, "Update");
         }
+        for(var i in wsclients)
+        {
+            wsclients[i].send(JSON.stringify(obj));
+        }
     });
     module.exports.data["rwradio"] = data_model.Datum(module.exports.RWRADIOVALS.rwradio_0, (val) => 
     {
         var obj = {
+            type: "update",
             id: "rwradio",
             rwradio: val
         }
@@ -114,10 +151,15 @@ exports.init = function(app)
         {
             clients[i].send(obj, "Update");
         }
+        for(var i in wsclients)
+        {
+            wsclients[i].send(JSON.stringify(obj));
+        }
     });
     module.exports.data["rwslide"] = data_model.Datum(5.5, (val) => 
     {
         var obj = {
+            type: "update",
             id: "rwslide",
             rwslide: val
         }
@@ -126,6 +168,42 @@ exports.init = function(app)
             clients[i].send(obj, "Update");
         }
     });
+
+    var expressWs = require('express-ws')(app);
+
+    app.ws('/wsevents', function (ws, req) {        
+        wsclients.push(ws);
+        console.log("new wsclient!");
+
+        var data = {
+            type: "connect",
+            history: module.exports.data["history"].history,
+            rotxt: module.exports.data["rotxt"].value,
+            rochk: module.exports.data["rochk"].value,
+            roradio: module.exports.data["roradio"].value,
+            roslide: module.exports.data["roslide"].value,
+            rwtxt: module.exports.data["rwtxt"].value,
+            rwchk: module.exports.data["rwchk"].value,
+            rwradio: module.exports.data["rwradio"].value,
+            rwslide: module.exports.data["rwslide"].value
+        }
+
+        ws.send(JSON.stringify(data));
+
+        ws.on('message', function(msg) {
+            var obj = JSON.parse(msg);
+
+            if(obj.rwtxt) module.exports.data["rwtxt"].value = obj.rwtxt;
+            if(obj.rwchk) module.exports.data["rwchk"].value = obj.rwchk;
+            if(obj.rwradio) module.exports.data["rwradio"].value = obj.rwradio;
+            if(obj.rwslide) module.exports.data["rwslide"].value = obj.rwslide;
+        });
+
+        ws.on('close', () => {
+            console.log("Bye wsclient!");
+            wsclients.splice(wsclients.indexOf(ws), 1);
+          });
+      });
 
     app.get("/sse", (req, res) => {
         const client = SSE(req, res);

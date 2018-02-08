@@ -1,8 +1,11 @@
+var websocket;
+
 function puppeteerInit()
 {
     generatedDialFn();
     generatedResizeFn();
     generatedGraphFn();
+    generatedInputHandlerFn();
 
     $( ".ui-sortable" ).sortable();
     
@@ -25,13 +28,41 @@ function puppeteerInit()
         });
     });
 
-    var es = new EventSource("/sse");
-    es.addEventListener("Connect", (ev) => { generatedConnectFn(ev.data) } );
-    es.addEventListener("Update", (ev) => { generatedUpdateFn(ev.data) } );
-    ///ev.addEventListener("eventName", function)
-    /*es.onmessage = function(ev) {
-        alert(ev.data); //will output 'Hello world!' 
-    };*/
+    //var es = new EventSource("/sse");
+    //es.addEventListener("Connect", (ev) => { generatedConnectFn(ev.data) } );
+    //es.addEventListener("Update", (ev) => { generatedUpdateFn(ev.data) } );
+    
+    var loc = window.location, new_uri;
+    if (loc.protocol === "https:") {
+        new_uri = "wss:";
+    } else {
+        new_uri = "ws:";
+    }
+    new_uri += "//" + loc.host;
+    new_uri += loc.pathname + "wsevents";
+
+    websocket = new WebSocket(new_uri);
+
+    websocket.onerror = function(event) {
+        //alert(event);
+    };
+
+    websocket.onopen = function(event) {
+        console.log(event);
+    };
+
+    websocket.onmessage = (event) => {
+        obj = $.parseJSON(event.data);
+        switch(obj.type)
+        {
+            case "connect":
+                generatedConnectFn(obj);
+                break;
+            case "update":
+                generatedUpdateFn(obj);
+                break;
+        }
+    };
     
     //TODO: remove this code, this is to drive the inputs on a timer.
     //window.setInterval(timer, 1000);

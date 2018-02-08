@@ -137,7 +137,13 @@ function generatedDialFn()
     angleOffset: -125,
     angleArc: 250,
     fgColor:"#33b5e5",
-    bgColor:"#2f2d2d"
+    bgColor:"#2f2d2d",
+    'change' : function (v) { 
+      var obj = {
+        rwslide: v
+      };
+      websocket.send(JSON.stringify(obj));
+    }
   });
 }
 
@@ -195,10 +201,8 @@ function generatedGraphFn()
   });
 }
 
-function generatedConnectFn(data)
+function generatedConnectFn(obj)
 {
-  obj = $.parseJSON(data);
-
   historyData = obj["history"];
   historyPlot.setData([historyData]);
   historyPlot.setupGrid();
@@ -223,7 +227,7 @@ function generatedConnectFn(data)
 
   $("#rwtxt").html(obj["rwtxt"]);
 
-  $( "#rwlide" ).val(obj["rwslide"]).trigger('change');;
+  $( "#rswlide" ).val(obj["rwslide"]).trigger('change');;
     
   if(obj["rwchk"])
   {
@@ -239,9 +243,8 @@ function generatedConnectFn(data)
   $( "#" + obj["rwradio"] ).iCheck('check');
 }
 
-function generatedUpdateFn(data)
+function generatedUpdateFn(obj)
 {
-  obj = $.parseJSON(data);
   switch(obj["id"])
   {
     case "history":
@@ -314,4 +317,63 @@ function fetchHistoryData()
     historyData.push([i, Math.sin(i) + 1]);
   }
   return historyData;
+}
+
+function generatedInputHandlerFn()
+{
+  $("#rwtxt").change(function()
+  {
+    var obj = {
+      rwtext: $("#rwtxt")[0].value
+    };
+    websocket.send(JSON.stringify(obj));
+  });
+
+  $("#rwslide").change(function()
+  {
+    var obj = {
+      rwslide: parseFloat($("#rwslide")[0].value)
+    };
+    websocket.send(JSON.stringify(obj));
+  });
+
+  $("#rwchk").change(function()
+  {
+    var obj = {
+      rwchk: $("#rwchk")[0].checked
+    };
+    websocket.send(JSON.stringify(obj));
+  });
+
+  $("#rwradio_0").on('ifChecked', function()
+  {
+    var obj = {
+      rwradio: "rwradio_0"
+    };
+    websocket.send(JSON.stringify(obj));
+  });
+
+  $("#rwradio_1").on('ifChecked', function()
+  {
+    var obj = {
+      rwradio: "rwradio_1"
+    };
+    if($("#rwradio_1")[0].checked) websocket.send(JSON.stringify(obj));
+  });
+
+  $("#rwradio_2").on('ifChecked', function()
+  {
+    var obj = {
+      rwradio: "rwradio_2"
+    };
+    if($("#rwradio_2")[0].checked) websocket.send(JSON.stringify(obj));
+  });
+
+  $("#rwradio_3").on('ifChecked', function()
+  {
+    var obj = {
+      rwradio: "rwradio_3"
+    };
+    if($("#rwradio_3")[0].checked) websocket.send(JSON.stringify(obj));
+  });
 }
