@@ -324,7 +324,7 @@ function generatedInputHandlerFn()
   $("#rwtxt").change(function()
   {
     var obj = {
-      rwtext: $("#rwtxt")[0].value
+      rwtxt: $("#rwtxt")[0].value
     };
     websocket.send(JSON.stringify(obj));
   });

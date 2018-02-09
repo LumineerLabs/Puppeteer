@@ -193,10 +193,10 @@ exports.init = function(app)
         ws.on('message', function(msg) {
             var obj = JSON.parse(msg);
 
-            if(obj.rwtxt) module.exports.data["rwtxt"].value = obj.rwtxt;
-            if(obj.rwchk) module.exports.data["rwchk"].value = obj.rwchk;
-            if(obj.rwradio) module.exports.data["rwradio"].value = obj.rwradio;
-            if(obj.rwslide) module.exports.data["rwslide"].value = obj.rwslide;
+            if(typeof obj.rwtxt !== 'undefined') module.exports.data["rwtxt"].value = obj.rwtxt;
+            if(typeof obj.rwchk !== 'undefined') module.exports.data["rwchk"].value = obj.rwchk;
+            if(typeof obj.rwradio !== 'undefined') module.exports.data["rwradio"].value = obj.rwradio;
+            if(typeof obj.rwslide !== 'undefined') module.exports.data["rwslide"].value = obj.rwslide;
         });
 
         ws.on('close', () => {

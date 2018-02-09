@@ -2,6 +2,18 @@ var puppeteer = require("./puppeteer");
 
 puppeteer.init();
 
+if (!String.prototype.format) {
+    String.prototype.format = function() {
+      var args = arguments;
+      return this.replace(/{(\d+)}/g, function(match, number) { 
+        return typeof args[number] != 'undefined'
+          ? args[number]
+          : match
+        ;
+      });
+    };
+  }
+
 // app specific stuff goes here!
 var lastHistoryX = 0;
 
@@ -29,6 +41,11 @@ setInterval(() => {
     }
 
     puppeteer.generated.data["roslide"].value = Math.floor((Math.random() * 75) + 25);
+
+    console.log("rwtxt: {0}\trwchk: {1}\trwradio: {2}\trwslide: {3}".format(puppeteer.generated.data["rwtxt"].value,
+                                                                            puppeteer.generated.data["rwchk"].value,
+                                                                            puppeteer.generated.data["rwradio"].value,
+                                                                            puppeteer.generated.data["rwslide"].value));
 
 }, 1000);
 
