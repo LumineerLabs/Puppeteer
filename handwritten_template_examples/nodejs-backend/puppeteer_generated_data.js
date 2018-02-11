@@ -42,6 +42,54 @@ exports.init = function(app)
             wsclients[i].send(JSON.stringify(obj));
         }
     });
+    module.exports.data["multihistory0"] = data_model.HistoryData(0, 100, (val) => 
+    {
+        var obj = {
+            type: "update",
+            id: "multihistory0",
+            multihistory0: val
+        }
+        for(var i in clients)
+        {
+            clients[i].send(obj, "Update");
+        }
+        for(var i in wsclients)
+        {
+            wsclients[i].send(JSON.stringify(obj));
+        }
+    });
+    module.exports.data["multihistory1"] = data_model.HistoryData(0, 100, (val) => 
+    {
+        var obj = {
+            type: "update",
+            id: "multihistory1",
+            multihistory1: val
+        }
+        for(var i in clients)
+        {
+            clients[i].send(obj, "Update");
+        }
+        for(var i in wsclients)
+        {
+            wsclients[i].send(JSON.stringify(obj));
+        }
+    });
+    module.exports.data["multihistory2"] = data_model.HistoryData(0, 100, (val) => 
+    {
+        var obj = {
+            type: "update",
+            id: "multihistory2",
+            multihistory2: val
+        }
+        for(var i in clients)
+        {
+            clients[i].send(obj, "Update");
+        }
+        for(var i in wsclients)
+        {
+            wsclients[i].send(JSON.stringify(obj));
+        }
+    });
     module.exports.data["rotxt"] = data_model.Datum(5, (val) => 
     {
         var obj = {
@@ -178,6 +226,7 @@ exports.init = function(app)
         var data = {
             type: "connect",
             history: module.exports.data["history"].history,
+            multihistory: [module.exports.data["multihistory0"].history, module.exports.data["multihistory1"].history, module.exports.data["multihistory2"].history],
             rotxt: module.exports.data["rotxt"].value,
             rochk: module.exports.data["rochk"].value,
             roradio: module.exports.data["roradio"].value,

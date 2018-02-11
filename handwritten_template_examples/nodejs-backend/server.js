@@ -53,4 +53,7 @@ setInterval(() => {
     // update history
     lastHistoryX += (2*Math.PI)/100;
     puppeteer.generated.data["history"].value = Math.sin(lastHistoryX) + 1;
+    puppeteer.generated.data["multihistory0"].value = Math.sin(lastHistoryX + Math.PI / 4) + 1;
+    puppeteer.generated.data["multihistory1"].value = Math.sin(lastHistoryX + Math.PI / 2) + 1;
+    puppeteer.generated.data["multihistory2"].value = Math.sin(lastHistoryX + 3 * Math.PI / 4) + 1;
 }, 200);

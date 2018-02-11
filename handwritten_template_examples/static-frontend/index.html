@@ -31,121 +31,175 @@
 <body>
   <h1>Puppeteer Widget Examples</h1>
 
-  <ul class="ui-sortable">
-      <!--read only text display><!-->
-    <li>
-      <div class="panel" >
-        <h2 class="ui-widget-header text">Read Only Text Box</h2>
-        <div class="centered-panel" id="rotxt_div">
-          <span id="rotxt" class="randval display-text">NaN</span>
-        </div>
-      </div>
-    </li>
-
-    <!--read/write text display><!-->
-    <li>
-      <div class="panel" >
-          <h2 class="ui-widget-header text">Read Write Text Box</h2>
-          <div class="centered-panel" id="rwtxt_div">
-            <input type="text" id="rwtxt" class="" placeholder="r/w input"></input>
+  <div id="tabs1" class="tabs">
+    <ul>
+      <li><a href="#tabs1tab1">tab1</a></li>
+      <li><a href="#tabs1tab2">tab2</a></li>
+    </ul>
+    <div id="tabs1tab1">
+      <ul class="ui-sortable">
+        <!--read only text display -->
+        <li>
+          <div class="panel" >
+            <h2 class="ui-widget-header text">Read Only Text Box</h2>
+            <div class="centered-panel" id="rotxt_div">
+              <span id="rotxt" class="randval display-text">NaN</span>
+            </div>
           </div>
-        </div>
-    </li>
-
-    <!--read only check box><!-->
-    <li>
-      <div class="panel toggle-panel">
-        <span class="toggle toggle-true" id="rochk"></span>
-        <span class="ui-widget-header toggle-text">On/Off Status Display</span>
-      </div>
-    </li>
-
-    <!--read/write check box><!-->
-    <li>
-      <div class="panel">
-        <h2 class="ui-widget-header text">Switch</h2>
-        <div class="centered-panel" id="rwchk_div">
-          <label class="switch">
-            <input id="rwchk" type="checkbox">
-            <span class="slider"></span>
-          </label>
-        </div>
-      </div>
-    </li>
-
-    <!--read only radio button group><!-->
-    <li>
-      <div class="panel">
-        <h2 class="ui-widget-header text">Read Only Radio Group</h2>
-        <div class="centered-panel" id="roradio_div">
-          <div class="radio-group">
-            <input type="radio" name="roradio" class="icheck" id="roradio_0" disabled>
-            <label>Option 1</label>
-
-            <input type="radio" name="roradio" class="icheck" id="roradio_1" disabled checked>
-            <label>Option 2</label>
-
-            <input type="radio" name="roradio" class="icheck" id="roradio_2" disabled>
-            <label>Option 3</label>
-
-            <input type="radio" name="roradio" class="icheck" id="roradio_3" disabled>
-            <label>Option 4</label>
+        </li>
+    
+        <!--read/write text display -->
+        <li>
+          <div class="panel" >
+              <h2 class="ui-widget-header text">Read Write Text Box</h2>
+              <div class="centered-panel" id="rwtxt_div">
+                <input type="text" id="rwtxt" class="" placeholder="r/w input"></input>
+              </div>
+            </div>
+        </li>
+    
+        <!--read only check box -->
+        <li>
+          <div class="panel toggle-panel">
+            <span class="toggle toggle-true" id="rochk"></span>
+            <span class="ui-widget-header toggle-text">On/Off Status Display</span>
           </div>
-        </div>
-      </div>
-    </li>
-
-    <!--read/write radio button group><!-->
-    <li>
-      <div class="panel">
-        <h2 class="ui-widget-header text">Read Write Radio Group</h2>
-        <div class="centered-panel" id="rwradio_div">
-          <div class="radio-group">
-            <input type="radio" name="rwradio" class="icheck" id="rwradio_0">
-            <label>Option 1</label>
-
-            <input type="radio" name="rwradio" class="icheck" id="rwradio_1" checked>
-            <label>Option 2</label>
-
-            <input type="radio" name="rwradio" class="icheck" id="rwradio_2">
-            <label>Option 3</label>
-
-            <input type="radio" name="rwradio" class="icheck" id="rwradio_3">
-            <label>Option 4</label>
+        </li>
+    
+        <!--read/write check box -->
+        <li>
+          <div class="panel">
+            <h2 class="ui-widget-header text">Switch</h2>
+            <div class="centered-panel" id="rwchk_div">
+              <label class="switch">
+                <input id="rwchk" type="checkbox">
+                <span class="slider"></span>
+              </label>
+            </div>
           </div>
-        </div>
-      </div>
-    </li>
+        </li>
+    
+        <!--read only radio button group -->
+        <li>
+          <div class="panel">
+            <h2 class="ui-widget-header text">Read Only Radio Group</h2>
+            <div class="centered-panel" id="roradio_div">
+              <div class="radio-group">
+                <input type="radio" name="roradio" class="icheck" id="roradio_0" disabled>
+                <label>Option 1</label>
+    
+                <input type="radio" name="roradio" class="icheck" id="roradio_1" disabled checked>
+                <label>Option 2</label>
+    
+                <input type="radio" name="roradio" class="icheck" id="roradio_2" disabled>
+                <label>Option 3</label>
+    
+                <input type="radio" name="roradio" class="icheck" id="roradio_3" disabled>
+                <label>Option 4</label>
+              </div>
+            </div>
+          </div>
+        </li>
+    
+        <!--read/write radio button group -->
+        <li>
+          <div class="panel">
+            <h2 class="ui-widget-header text">Read Write Radio Group</h2>
+            <div class="centered-panel" id="rwradio_div">
+              <div class="radio-group">
+                <input type="radio" name="rwradio" class="icheck" id="rwradio_0">
+                <label>Option 1</label>
+    
+                <input type="radio" name="rwradio" class="icheck" id="rwradio_1" checked>
+                <label>Option 2</label>
+    
+                <input type="radio" name="rwradio" class="icheck" id="rwradio_2">
+                <label>Option 3</label>
+    
+                <input type="radio" name="rwradio" class="icheck" id="rwradio_3">
+                <label>Option 4</label>
+              </div>
+            </div>
+          </div>
+        </li>
+    
+        <!--read only dial -->
+        <li>
+          <div class="panel">
+            <h2 class="ui-widget-header text">Read Only Dial</h2>
+            <div class="centered-panel" id="roslide_div">
+              <input type="text" value="75" class="dial" data-height=80% data-width=80% id="roslide">
+            </div>
+          </div>
+        </li>
+    
+        <!--read/write dial -->
+        <li>
+          <div class="panel">
+            <h2 class="ui-widget-header text">Read Write Dial</h2>
+            <div class="centered-panel" id="rwslide_div">
+              <input type="text" value="5.5" class="dial" data-height=80% data-width=80% id="rwslide">
+            </div>
+          </div>
+        </li>
+    
+        <!-- graph -->
+        <li>
+          <div class="panel">
+            <h2 class="ui-widget-header text">History</h2>
+            <div class="graph-contianer" id="history_div">
+              <div class="graph" id="history"></div>
+            </div>
+          </div>
+        </li>
 
-    <!--read only dial><!-->
-    <li>
-      <div class="panel">
-        <h2 class="ui-widget-header text">Read Only Dial</h2>
-        <div class="centered-panel" id="roslide_div">
-          <input type="text" value="75" class="dial" data-height=80% data-width=80% id="roslide">
+        <!-- dropdown -->
+        <li>    
+          <div class = "panel">
+            <h2 class="ui-widget-header text">dropdown</h2>
+            <div class="centered-panel" id="drop_div">
+                <select name="drop" id="drop" class="dropwdowns">
+                  <option>drop1</option>
+                  <option>drop2</option>
+                  <option selected="selected">drop3</option>
+                  <option>drop3</option>
+                  <option>drop4</option>
+                </select>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div id="tabs1tab2">
+      <div id="tabs2" class="tabs">
+        <ul>
+          <li><a href="#tabs2tab1">subtab1</a></li>
+          <li><a href="#tabs2tab2">subtab2</a></li>
+          <li><a href="#tabs2tab3">subtab3</a></li>
+        </ul>
+        <div id="tabs2tab1">
+          <ul class="ui-sortable"></ul>
+            <!-- graph -->
+            <li>
+              <div class="panel">
+                <h2 class="ui-widget-header text">MultiHistory</h2>
+                <div class="graph-contianer" id="multihistory_div">
+                  <div class="graph" id="multihistory"></div>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
-      </div>
-    </li>
+        <div id="tabs2tab2">
 
-    <!--read/write dial><!-->
-    <li>
-      <div class="panel">
-        <h2 class="ui-widget-header text">Read Write Dial</h2>
-        <div class="centered-panel" id="rwslide_div">
-          <input type="text" value="5.5" class="dial" data-height=80% data-width=80% id="rwslide">
         </div>
-      </div>
-    </li>
+        <div id="tabs2tab3">
 
-    <!-- graph><!-->
-    <li>
-      <div class="panel">
-        <h2 class="ui-widget-header text">History</h2>
-        <div class="graph-contianer" id="history_div">
-          <div class="graph" id="history"></div>
         </div>
       </div>
-    </li>
+    </div>
+  </div>
+
 
     <!--read only color><!-->
 

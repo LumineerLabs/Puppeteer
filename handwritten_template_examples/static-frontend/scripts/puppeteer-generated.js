@@ -94,6 +94,31 @@ function generatedResizeFn()
         minHeight: minDivWidth/3,
         minWidth: minDivWidth
       });
+
+    // tabs1
+    $( ".tabs" ).css('height','auto');
+    /*var minDivWidth = Math.max(div.width(), div.parent().parent().width());
+    var minDivHeight = Math.max(div.height(), div.parent().parent().height())
+    div.resizable({
+        minHeight: 1000,
+        minWidth: minDivWidth
+      });
+    div.width(minDivWidth);*/
+
+    // history
+    var div = $( "#multihistory_div" );
+    var minDivWidth = Math.max(div.width(), div.parent().width(), 600);
+    div.resizable({
+        minHeight: minDivWidth/3,
+        minWidth: minDivWidth
+      });
+    div.width(minDivWidth);
+    div.height(minDivWidth/3);
+    var div = $( "#multihistory" );
+    div.resizable({
+        minHeight: minDivWidth/3,
+        minWidth: minDivWidth
+      });
 }
 
 function generatedCheckFunction(event)
@@ -173,10 +198,6 @@ function generatedGraphFn()
     }
   );
 
-  /*historyPlot.setData([fetchHistoryData()]);
-  historyPlot.setupGrid();
-  historyPlot.draw();*/
-
   $("<div id='history_tooltip'></div>").css({
     position: "absolute",
     display: "none",
@@ -199,6 +220,52 @@ function generatedGraphFn()
       $("#history_tooltip").hide();
     }
   });
+
+  multiHistoryPlot = $.plot($("#multihistory"), [ multiHistoryData ], 
+    {
+      yaxis: 
+      { 
+        max: 2
+      },
+      grid: 
+      {
+				hoverable: true
+			},
+      crosshair:
+      {
+        mode: "x"
+      },
+      lines:
+      {
+        show: true,
+        fill: true,
+        fillColor:  {colors:  [{ opacity: 0.1 }, { opacity: 0.1 }] } //[{ opacity: 0.1 }, { opacity: 0.8 }]
+      }
+    }
+  );
+
+  $("<div id='multihistory_tooltip'></div>").css({
+    position: "absolute",
+    display: "none",
+    border: "1px solid #666666",
+    padding: "2px",
+    "background-color": "#000000",
+    opacity: 0.80
+  }).appendTo("body");
+
+  $("#multihistory").bind("plothover", function (event, pos, item) 
+  {
+    if (item) {
+      var x = item.datapoint[0].toFixed(2),
+        y = item.datapoint[1].toFixed(2);
+
+      $("#multihistory_tooltip").html("(" + x + ", " + y + ")")
+        .css({top: item.pageY+5, left: item.pageX+5})
+        .fadeIn(200);
+    } else {
+      $("#multihistory_tooltip").hide();
+    }
+  });
 }
 
 function generatedConnectFn(obj)
@@ -207,6 +274,13 @@ function generatedConnectFn(obj)
   historyPlot.setData([historyData]);
   historyPlot.setupGrid();
   historyPlot.draw();
+
+  multiHistoryData[0].data = obj["multihistory"][0];
+  multiHistoryData[1].data = obj["multihistory"][1];
+  multiHistoryData[2].data = obj["multihistory"][2];
+  multiHistoryPlot.setData([multiHistoryData]);
+  multiHistoryPlot.setupGrid();
+  multiHistoryPlot.draw();
 
   $("#rotxt").html(obj["rotxt"]);
 
@@ -251,10 +325,40 @@ function generatedUpdateFn(obj)
     {
       if (historyData.length > 0)
         historyData = historyData.slice(1);
-        historyData.push(obj["history"]);
-        historyPlot.setData([historyData]);
-        historyPlot.setupGrid();
-        historyPlot.draw();
+      historyData.push(obj["history"]);
+      historyPlot.setData([historyData]);
+      historyPlot.setupGrid();
+      historyPlot.draw();
+      break;
+    }
+    case "multihistory0":
+    {
+      if (multiHistoryData[0].data.length > 0)
+        multiHistoryData[0].data = multiHistoryData[0].data.slice(1);
+      multiHistoryData[0].data.push(obj["multihistory0"]);
+      multiHistoryPlot.setData(multiHistoryData);
+      multiHistoryPlot.setupGrid();
+      multiHistoryPlot.draw();
+      break;
+    }
+    case "multihistory1":
+    {
+      if (multiHistoryData[1].data.length > 0)
+        multiHistoryData[1].data = multiHistoryData[1].data.slice(1);
+      multiHistoryData[1].data.push(obj["multihistory1"]);
+      multiHistoryPlot.setData(multiHistoryData);
+      multiHistoryPlot.setupGrid();
+      multiHistoryPlot.draw();
+      break;
+    }
+    case "multihistory2":
+    {
+      if (multiHistoryData[2].data.length > 0)
+        multiHistoryData[2].data = multiHistoryData[2].data.slice(1);
+      multiHistoryData[2].data.push(obj["multihistory2"]);
+      multiHistoryPlot.setData(multiHistoryData);
+      multiHistoryPlot.setupGrid();
+      multiHistoryPlot.draw();
       break;
     }
     case "rotxt":
@@ -306,9 +410,12 @@ function generatedUpdateFn(obj)
   }
 }
 
-var historyData = []
+var historyData = [];
 var lastHistoryX = 2*Math.PI;
 var historyPlot = null;
+
+var multiHistoryData = [{data: []},{data: []},{data: []}];
+var multiHistoryPlot = null;
 
 function fetchHistoryData()
 {
@@ -375,5 +482,13 @@ function generatedInputHandlerFn()
       rwradio: "rwradio_3"
     };
     if($("#rwradio_3")[0].checked) websocket.send(JSON.stringify(obj));
+  });
+
+  $( "#drop" ).on( "selectmenuchange", function(event, ui)
+  {
+    var obj = {
+      drop: ui.item.value
+    }
+    websocket.send(JSON.stringify(obj));
   });
 }

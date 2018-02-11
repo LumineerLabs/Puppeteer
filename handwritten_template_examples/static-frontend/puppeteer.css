@@ -10,7 +10,7 @@ body
     display: inline-block;
 }
 
-ul 
+ul
 {
     list-style-type: none;
 }
@@ -80,21 +80,6 @@ li
     margin-right: auto;
     margin-top: auto;
     margin-bottom: 12px;
-}
-
-input[type=text] 
-{
-    color: #33b5e5;
-    background-color: #2f2d2d;
-    text-align: center;
-    font-size: 100%;
-    font-weight: 350;
-    font-size: 2em;
-    width: 75%;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    margin: 18px;
-    margin-top: 0px;
 }
 
 input[type=text]:focus 
@@ -216,4 +201,84 @@ input:checked + .slider:before
 {
     width: 100%;
     height: 100%;
+}
+
+.ui-tabs .ui-tabs-panel 
+{
+    display: inline-block;
+    background-color: #141414;
+}
+
+.ui-widget-content {
+    background: #444444;
+}
+
+.ui-widget-header {
+    border: 1px solid #2f2d2d;
+    background: #1f1d1d;
+    color: #333333;
+    font-weight: bold;
+}
+
+.ui-widget.ui-widget-content {
+    border: 1px solid #2f2d2d;
+}
+
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+    color: #d8d9da;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-menu-item-wrapper {
+    border: 1px solid #001935;
+    border-bottom-width: 1px;
+    background: #102945;
+    font-weight: normal;
+    color: #d8d9da;
+}
+
+.ui-state-default:hover {
+    border: 1px solid #115f85;
+    border-bottom-width: 1px;
+    background: #216f95;
+    font-weight: normal;
+}
+
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+    color: #272625;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active 
+{
+    border: 1px solid #23a5d5;
+    border-bottom-width: 1px;
+    font-weight: normal;
+    background: #33b5e5;
+}
+
+
+
+input[type=text], .ui-selectmenu-button, .ui-selectmenu-button:hover, .ui-selectmenu-button:active, .ui-selectmenu-button:focus
+{
+    color: #33b5e5;
+    background-color: #2f2d2d;
+    text-align: center;
+    font-size: 100%;
+    font-weight: 350;
+    font-size: 1em;
+    width: 14em;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    margin: 18px;
+    margin-top: 0px;
+}
+
+.ui-selectmenu-button, .ui-selectmenu-button:hover, .ui-selectmenu-button:active, .ui-selectmenu-button:focus
+{
+    font-size: 1em;
+    text-align: left;
+}
+
+.ui-menu-item
+{
+    float:none;
 }

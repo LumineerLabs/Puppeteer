@@ -10,6 +10,8 @@ function puppeteerInit()
     $( ".ui-sortable" ).sortable();
     
     $( ".ui-sortable" ).disableSelection();
+
+    $(".dropwdowns").selectmenu();
     
     $('.icheck').each(function(){
         var self = $(this),
@@ -27,6 +29,8 @@ function puppeteerInit()
             generatedCheckFunction(event);
         });
     });
+
+    $(".tabs").tabs();
 
     //var es = new EventSource("/sse");
     //es.addEventListener("Connect", (ev) => { generatedConnectFn(ev.data) } );
