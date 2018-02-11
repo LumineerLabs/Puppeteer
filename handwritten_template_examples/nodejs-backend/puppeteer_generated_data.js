@@ -1,5 +1,4 @@
 const data_model = require("./puppeteer_data_model");
-const SSE = require("sse-node");
 
 // enum values
 exports.RWRADIOVALS = 
@@ -18,7 +17,6 @@ exports.RORADIOVALS =
     roradio_3: "roradio_3"
 }
 
-var clients = [];
 var wsclients = [];
 
 exports.init = function(app)
@@ -33,10 +31,6 @@ exports.init = function(app)
             id: "history",
             history: val
         }
-        for(var i in clients)
-        {
-            clients[i].send(obj, "Update");
-        }
         for(var i in wsclients)
         {
             wsclients[i].send(JSON.stringify(obj));
@@ -48,10 +42,6 @@ exports.init = function(app)
             type: "update",
             id: "multihistory0",
             multihistory0: val
-        }
-        for(var i in clients)
-        {
-            clients[i].send(obj, "Update");
         }
         for(var i in wsclients)
         {
@@ -65,10 +55,6 @@ exports.init = function(app)
             id: "multihistory1",
             multihistory1: val
         }
-        for(var i in clients)
-        {
-            clients[i].send(obj, "Update");
-        }
         for(var i in wsclients)
         {
             wsclients[i].send(JSON.stringify(obj));
@@ -80,10 +66,6 @@ exports.init = function(app)
             type: "update",
             id: "multihistory2",
             multihistory2: val
-        }
-        for(var i in clients)
-        {
-            clients[i].send(obj, "Update");
         }
         for(var i in wsclients)
         {
@@ -97,10 +79,6 @@ exports.init = function(app)
             id: "rotxt",
             rotxt: val
         }
-        for(var i in clients)
-        {
-            clients[i].send(obj, "Update");
-        }
         for(var i in wsclients)
         {
             wsclients[i].send(JSON.stringify(obj));
@@ -112,10 +90,6 @@ exports.init = function(app)
             type: "update",
             id: "rochk",
             rochk: val
-        }
-        for(var i in clients)
-        {
-            clients[i].send(obj, "Update");
         }
         for(var i in wsclients)
         {
@@ -129,10 +103,6 @@ exports.init = function(app)
             id: "roradio",
             roradio: val
         }
-        for(var i in clients)
-        {
-            clients[i].send(obj, "Update");
-        }
         for(var i in wsclients)
         {
             wsclients[i].send(JSON.stringify(obj));
@@ -144,10 +114,6 @@ exports.init = function(app)
             type: "update",
             id: "roslide",
             roslide: val
-        }
-        for(var i in clients)
-        {
-            clients[i].send(obj, "Update");
         }
         for(var i in wsclients)
         {
@@ -163,10 +129,6 @@ exports.init = function(app)
             id: "rwtxt",
             rwtxt: val
         }
-        for(var i in clients)
-        {
-            clients[i].send(obj, "Update");
-        }
         for(var i in wsclients)
         {
             wsclients[i].send(JSON.stringify(obj));
@@ -178,10 +140,6 @@ exports.init = function(app)
             type: "update",
             id: "rwchk",
             rwchk: val
-        }
-        for(var i in clients)
-        {
-            clients[i].send(obj, "Update");
         }
         for(var i in wsclients)
         {
@@ -195,10 +153,6 @@ exports.init = function(app)
             id: "rwradio",
             rwradio: val
         }
-        for(var i in clients)
-        {
-            clients[i].send(obj, "Update");
-        }
         for(var i in wsclients)
         {
             wsclients[i].send(JSON.stringify(obj));
@@ -211,9 +165,9 @@ exports.init = function(app)
             id: "rwslide",
             rwslide: val
         }
-        for(var i in clients)
+        for(var i in wsclients)
         {
-            clients[i].send(obj, "Update");
+            wsclients[i].send(JSON.stringify(obj));
         }
     });
 
@@ -251,33 +205,6 @@ exports.init = function(app)
         ws.on('close', () => {
             console.log("Bye wsclient!");
             wsclients.splice(wsclients.indexOf(ws), 1);
-          });
-      });
-
-    app.get("/sse", (req, res) => {
-        const client = SSE(req, res);
-
-        // send all current data
-        // add individual elements
-        var data = {
-            history: module.exports.data["history"].history,
-            rotxt: module.exports.data["rotxt"].value,
-            rochk: module.exports.data["rochk"].value,
-            roradio: module.exports.data["roradio"].value,
-            roslide: module.exports.data["roslide"].value,
-            rwtxt: module.exports.data["rwtxt"].value,
-            rwchk: module.exports.data["rwchk"].value,
-            rwradio: module.exports.data["rwradio"].value,
-            rwslide: module.exports.data["rwslide"].value
-        }
-
-        client.send(data, "Connect");
-
-        clients.push(client);
-        
-        client.onClose(() => {
-            console.log("Bye client!");
-            clients.splice(clients.indexOf(client), 1);
         });
     });
 }
