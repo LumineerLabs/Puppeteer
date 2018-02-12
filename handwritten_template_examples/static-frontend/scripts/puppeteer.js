@@ -31,10 +31,6 @@ function puppeteerInit()
     });
 
     $(".tabs").tabs();
-
-    //var es = new EventSource("/sse");
-    //es.addEventListener("Connect", (ev) => { generatedConnectFn(ev.data) } );
-    //es.addEventListener("Update", (ev) => { generatedUpdateFn(ev.data) } );
     
     var loc = window.location, new_uri;
     if (loc.protocol === "https:") {
@@ -43,7 +39,7 @@ function puppeteerInit()
         new_uri = "ws:";
     }
     new_uri += "//" + loc.host;
-    new_uri += loc.pathname + "wsevents";
+    new_uri += "/wsevents";
 
     websocket = new WebSocket(new_uri);
 
@@ -52,7 +48,6 @@ function puppeteerInit()
     };
 
     websocket.onopen = function(event) {
-        console.log(event);
     };
 
     websocket.onmessage = (event) => {

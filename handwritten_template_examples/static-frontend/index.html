@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="scripts/3rd_party/jquery-ui-1.12.1/jquery-ui.css">
   <link rel="stylesheet" type="text/css"href="puppeteer.css">
   <link href="scripts/3rd_party/icheck/skins/line/blue.css" rel="stylesheet">
+  <link rel="stylesheet" media="screen" type="text/css" href="scripts/3rd_party/colpick/css/colpick.css" />
 
   <title>Controller Example</title>
 
@@ -21,6 +22,7 @@
 	<script language="javascript" type="text/javascript" src="scripts/3rd_party/flot/jquery.flot.resize.js"></script>
   <script src="scripts/puppeteer.js"></script>
   <script src="scripts/puppeteer-generated.js"></script>
+  <script type="text/javascript" src="scripts/3rd_party/colpick/js/colpick.js"></script>
   <script>
       $( function() {
         puppeteerInit();
@@ -36,8 +38,9 @@
       <li><a href="#tabs1tab1">tab1</a></li>
       <li><a href="#tabs1tab2">tab2</a></li>
     </ul>
-    <div id="tabs1tab1">
-      <ul class="ui-sortable">
+    <div id="tabs1tab1" class="tab">
+      <span class="group-header">Group1</span>
+      <ul class="ui-sortable clearfix group">
         <!--read only text display -->
         <li>
           <div class="panel" >
@@ -142,7 +145,10 @@
             </div>
           </div>
         </li>
-    
+      </ul>
+
+      <span class="group-header">Group2</span>
+      <ul class="ui-sortable clearfix group">
         <!-- graph -->
         <li>
           <div class="panel">
@@ -170,15 +176,15 @@
         </li>
       </ul>
     </div>
-    <div id="tabs1tab2">
+    <div id="tabs1tab2" class="tab">
       <div id="tabs2" class="tabs">
         <ul>
           <li><a href="#tabs2tab1">subtab1</a></li>
           <li><a href="#tabs2tab2">subtab2</a></li>
           <li><a href="#tabs2tab3">subtab3</a></li>
         </ul>
-        <div id="tabs2tab1">
-          <ul class="ui-sortable"></ul>
+        <div id="tabs2tab1" class="tab">
+          <ul class="ui-sortable clearfix">
             <!-- graph -->
             <li>
               <div class="panel">
@@ -190,29 +196,43 @@
             </li>
           </ul>
         </div>
-        <div id="tabs2tab2">
-
+        <div id="tabs2tab2" class="tab">
+          <ul class="ui-sortable clearfix">
+            <!-- read only color -->
+            <li>
+              <div class="panel" >
+                <h2 class="ui-widget-header text">Read Only Color Indicator</h2>
+                <div class="centered-panel" id="roclr_div">
+                  <div id="roclr" class="display-color"></div>
+                </div>
+              </div>
+            </li>
+            <!-- read/write color -->
+            <li>
+              <div class="panel" >
+                <h2 class="ui-widget-header text">Read Write Color</h2>
+                <div class="centered-panel" id="rwclr_div">
+                    <div id="rwclr" class="colorpicker"></div>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
-        <div id="tabs2tab3">
-
+        <div id="tabs2tab3" class="tab">
+          <ul class="ui-sortable clearfix">
+            <!--read only text display -->
+            <li>
+              <div class="panel" >
+                <h2 class="ui-widget-header text">Read Only Text Box</h2>
+                <div class="centered-panel display-text" id="sublnk_div">
+                  <a id="sublnk" href="subpage1.html">Subage1</a>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-
-
-    <!--read only color><!-->
-
-    <!--read/write color><!-->
-
-    <!--sub path control group><!-->
-
-    <!--sub path text input><!-->
-
-    <!--tabs><!-->
-
-    <!--link><!-->
-  </ul>
-
 </body>
 </html>

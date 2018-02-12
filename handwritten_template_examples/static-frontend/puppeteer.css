@@ -205,7 +205,7 @@ input:checked + .slider:before
 
 .ui-tabs .ui-tabs-panel 
 {
-    display: inline-block;
+    display: block;
     background-color: #141414;
 }
 
@@ -281,4 +281,120 @@ input[type=text], .ui-selectmenu-button, .ui-selectmenu-button:hover, .ui-select
 .ui-menu-item
 {
     float:none;
+}
+
+.ui-sortable
+{
+    float:none;
+    display:block;
+    list-style-type:none;
+}
+
+.clearfix:after { 
+    content: "."; 
+    visibility: hidden; 
+    display: block; 
+    height: 0; 
+    clear: both;
+ }
+
+ .group-header
+ {
+    color: #d8d9da;
+    margin-bottom: -10px;
+    background-color: #141414;
+    margin-left:.8em;
+    padding-left:.4em;
+    padding-right:.4em;
+    font-size: 1.2rem;
+    font-weight: bold;
+ }
+
+ .ui-sortable
+ {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top:-12px;
+ }
+
+ .group
+ {
+    border: 1px solid #23a5d5;
+    border-radius: 10px 10px 10px 10px;
+ }
+
+ .tabs 
+ {
+    border-radius:5px;
+ }
+
+ .tab
+ {
+ }
+
+.display-color
+{
+    display:block;
+    float: none;
+    clear: both;
+    width: 75px;
+    height: 75px;
+
+    margin: 0 auto;
+
+    border-radius: 10px;
+    
+    position: static;
+    text-align: center;
+
+    margin-bottom: 10px;
+}
+
+.colpick
+{
+    margin-bottom: 10px;
+}
+
+.colorpicker
+{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+.display-text a
+{
+    color: #33b5e5;
+    
+    text-align: center;
+    font-size: 100%;
+    font-weight: 700;
+    font-size: .5em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 12px;
+}
+
+.breadcrumb-link
+{
+    display: inline;
+}
+
+.breadcrumb-link a
+{
+    color: #33b5e5;
+    font-weight: 700;
+    font-size: .75em;
+    display: inline;
+}
+
+.breadcrumb-title
+{
+    display: inline;
+    font-weight: 700;
+    font-size: 1.5em;
 }

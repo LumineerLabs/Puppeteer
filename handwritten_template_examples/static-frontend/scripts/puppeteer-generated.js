@@ -119,6 +119,24 @@ function generatedResizeFn()
         minHeight: minDivWidth/3,
         minWidth: minDivWidth
       });
+
+    // roclr
+    var div = $( "#roclr_div" );
+    var minDivWidth = Math.max(div.width(), div.parent().width());
+    div.resizable({
+        minHeight: div.height(),
+        minWidth: minDivWidth
+      });
+    div.width(minDivWidth);
+    
+    // rwclr
+    var div = $( "#rwclr_div" );
+    var minDivWidth = Math.max(div.width(), div.parent().width());
+    div.resizable({
+        minHeight: div.height(),
+        minWidth: minDivWidth
+      });
+    div.width(minDivWidth);
 }
 
 function generatedCheckFunction(event)
@@ -315,6 +333,8 @@ function generatedConnectFn(obj)
   }
 
   $( "#" + obj["rwradio"] ).iCheck('check');
+
+  $( "#roclr" ).css('background', obj["roclr"]);
 }
 
 function generatedUpdateFn(obj)
@@ -405,7 +425,10 @@ function generatedUpdateFn(obj)
       $( "#" + obj["rwradio"] ).iCheck('check');
       break;
     case "rwslide":
-      $( "#rwslide" ).val(obj["rwslide"]).trigger('change');;
+      $( "#rwslide" ).val(obj["rwslide"]).trigger('change');
+      break;
+    case "roclr":
+      $( "#roclr" ).css('background', obj["roclr"]);
       break;
   }
 }
@@ -490,5 +513,18 @@ function generatedInputHandlerFn()
       drop: ui.item.value
     }
     websocket.send(JSON.stringify(obj));
+  });
+
+  $('#rwclr').colpick({
+    color: '#0000ff',
+    flat: true,
+    colorScheme: 'dark',
+    submit: 0,
+    onChange: function (col, hex, rgb) {
+      var obj = {
+        rwclr: '#'+hex
+      }
+      websocket.send(JSON.stringify(obj));
+    }
   });
 }
