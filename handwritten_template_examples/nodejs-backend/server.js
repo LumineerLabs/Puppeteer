@@ -42,14 +42,17 @@ setInterval(() => {
     }
 
     puppeteer.generated.data["tab1"]["Group1"]["roslide"].value = Math.floor((Math.random() * 75) + 25);
+    puppeteer.generated.data["tab2"]["subtab3"]["Subpage1"]["roslide"].value = Math.floor((Math.random() * 75) + 25);
 
     puppeteer.generated.data["tab2"]["subtab2"]["roclr"].value = chroma.random();
 
-    console.log("rwtxt: {0}\trwchk: {1}\trwradio: {2}\trwslide: {3}\trwclr: {4}".format(puppeteer.generated.data["tab1"]["Group1"]["rwtxt"].value,
-                                                                                        puppeteer.generated.data["tab1"]["Group1"]["rwchk"].value,
-                                                                                        puppeteer.generated.data["tab1"]["Group1"]["rwradio"].value,
-                                                                                        puppeteer.generated.data["tab1"]["Group1"]["rwslide"].value,
-                                                                                        puppeteer.generated.data["tab2"]["subtab2"]["rwclr"].value.hex()));
+    console.log("rwtxt: {0}\trwchk: {1}\trwradio: {2}\trwslide: {3}\trwclr: {4}\tdrop: {5}".format(
+        puppeteer.generated.data["tab1"]["Group1"]["rwtxt"].value,
+        puppeteer.generated.data["tab1"]["Group1"]["rwchk"].value,
+        puppeteer.generated.data["tab1"]["Group1"]["rwradio"].value,
+        puppeteer.generated.data["tab1"]["Group1"]["rwslide"].value,
+        puppeteer.generated.data["tab2"]["subtab2"]["rwclr"].value.hex(),
+        puppeteer.generated.data["tab1"]["Group2"]["drop"].value));
 
 }, 1000);
 

@@ -44,11 +44,18 @@ function generatedConnectFn(obj)
 
 function generatedUpdateFn(obj)
 {
-  switch(obj["id"])
+  if(typeof obj.tab2 !== 'undefined')
   {
-    case "roslide":
-      $( "#roslide" ).val(obj["roslide"]).trigger('change');;
-      break;
+    if(typeof obj.tab2.subtab3 !== 'undefined')
+    {
+      if(typeof obj.tab2.subtab3.Subpage1 !== 'undefined')
+      {
+        if(typeof obj.tab2.subtab3.Subpage1.roslide !== 'undefined') 
+        {
+          $( "#roslide" ).val(obj.tab2.subtab3.Subpage1.roslide).trigger('change');
+        }
+      }
+    }
   }
 }
 

@@ -52,15 +52,7 @@ function puppeteerInit()
 
     websocket.onmessage = (event) => {
         obj = $.parseJSON(event.data);
-        switch(obj.type)
-        {
-            case "connect":
-                generatedConnectFn(obj);
-                break;
-            case "update":
-                generatedUpdateFn(obj);
-                break;
-        }
+        generatedUpdateFn(obj);
     };
     
     //TODO: remove this code, this is to drive the inputs on a timer.

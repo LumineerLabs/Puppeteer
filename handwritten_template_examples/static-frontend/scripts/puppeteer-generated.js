@@ -183,7 +183,11 @@ function generatedDialFn()
     bgColor:"#2f2d2d",
     'change' : function (v) { 
       var obj = {
-        rwslide: v
+        tab1: {
+          Group1: {
+            rwslide: v
+          }
+        }
       };
       websocket.send(JSON.stringify(obj));
     }
@@ -286,150 +290,140 @@ function generatedGraphFn()
   });
 }
 
-function generatedConnectFn(obj)
-{
-  historyData = obj["history"];
-  historyPlot.setData([historyData]);
-  historyPlot.setupGrid();
-  historyPlot.draw();
-
-  multiHistoryData[0].data = obj["multihistory"][0];
-  multiHistoryData[1].data = obj["multihistory"][1];
-  multiHistoryData[2].data = obj["multihistory"][2];
-  multiHistoryPlot.setData([multiHistoryData]);
-  multiHistoryPlot.setupGrid();
-  multiHistoryPlot.draw();
-
-  $("#rotxt").html(obj["rotxt"]);
-
-  $( "#roslide" ).val(obj["roslide"]).trigger('change');;
-    
-  if(obj["rochk"])
-  {
-      $( "#rochk" ).removeClass("toggle-false");
-      $( "#rochk" ).addClass("toggle-true");
-  }
-  else
-  {
-      $( "#rochk" ).removeClass("toggle-true");
-      $( "#rochk" ).addClass("toggle-false");
-  }
-
-  $( "#" + obj["roradio"] ).iCheck('check');
-
-  $("#rwtxt").html(obj["rwtxt"]);
-
-  $( "#rswlide" ).val(obj["rwslide"]).trigger('change');;
-    
-  if(obj["rwchk"])
-  {
-      $( "#rwchk" ).removeClass("toggle-false");
-      $( "#rwchk" ).addClass("toggle-true");
-  }
-  else
-  {
-      $( "#rwchk" ).removeClass("toggle-true");
-      $( "#rwchk" ).addClass("toggle-false");
-  }
-
-  $( "#" + obj["rwradio"] ).iCheck('check');
-
-  $( "#roclr" ).css('background', obj["roclr"]);
-}
-
 function generatedUpdateFn(obj)
 {
-  switch(obj["id"])
+  if(typeof obj.tab1 !== 'undefined')
   {
-    case "history":
+    if(typeof obj.tab1.Group1 !== 'undefined')
     {
-      if (historyData.length > 0)
-        historyData = historyData.slice(1);
-      historyData.push(obj["history"]);
-      historyPlot.setData([historyData]);
-      historyPlot.setupGrid();
-      historyPlot.draw();
-      break;
-    }
-    case "multihistory0":
-    {
-      if (multiHistoryData[0].data.length > 0)
-        multiHistoryData[0].data = multiHistoryData[0].data.slice(1);
-      multiHistoryData[0].data.push(obj["multihistory0"]);
-      multiHistoryPlot.setData(multiHistoryData);
-      multiHistoryPlot.setupGrid();
-      multiHistoryPlot.draw();
-      break;
-    }
-    case "multihistory1":
-    {
-      if (multiHistoryData[1].data.length > 0)
-        multiHistoryData[1].data = multiHistoryData[1].data.slice(1);
-      multiHistoryData[1].data.push(obj["multihistory1"]);
-      multiHistoryPlot.setData(multiHistoryData);
-      multiHistoryPlot.setupGrid();
-      multiHistoryPlot.draw();
-      break;
-    }
-    case "multihistory2":
-    {
-      if (multiHistoryData[2].data.length > 0)
-        multiHistoryData[2].data = multiHistoryData[2].data.slice(1);
-      multiHistoryData[2].data.push(obj["multihistory2"]);
-      multiHistoryPlot.setData(multiHistoryData);
-      multiHistoryPlot.setupGrid();
-      multiHistoryPlot.draw();
-      break;
-    }
-    case "rotxt":
-      $("#rotxt").html(obj["rotxt"]);
-      break;
-    case "rochk":
-    {
-      if(obj["rochk"])
+      if(typeof obj.tab1.Group1.rotxt !== 'undefined') 
       {
-        $( "#rochk" ).removeClass("toggle-false");
-        $( "#rochk" ).addClass("toggle-true");
+        $("#rotxt").html(obj.tab1.Group1.rotxt);
       }
-      else
+      if(typeof obj.tab1.Group1.rwtxt !== 'undefined') 
       {
-        $( "#rochk" ).removeClass("toggle-true");
-        $( "#rochk" ).addClass("toggle-false");
+        $("#rwtxt").html(obj.tab1.Group1.rwtxt);
       }
-      break;
+      if(typeof obj.tab1.Group1.rwchk !== 'undefined')
+      {
+        if(obj.tab1.Group1.rwchk)
+        {
+          $( "#rwchk" ).removeClass("toggle-false");
+          $( "#rwchk" ).addClass("toggle-true");
+        }
+        else
+        {
+          $( "#rwchk" ).removeClass("toggle-true");
+          $( "#rwchk" ).addClass("toggle-false");
+        }
+      }
+      if(typeof obj.tab1.Group1.rochk !== 'undefined')
+      {
+        if(obj.tab1.Group1.rochk)
+        {
+          $( "#rochk" ).removeClass("toggle-false");
+          $( "#rochk" ).addClass("toggle-true");
+        }
+        else
+        {
+          $( "#rochk" ).removeClass("toggle-true");
+          $( "#rochk" ).addClass("toggle-false");
+        }
+      }
+      if(typeof obj.tab1.Group1.rwradio !== 'undefined')
+      {
+        $( "#" + obj.tab1.Group1.rwradio ).iCheck('check');
+      }
+      if(typeof obj.tab1.Group1.roradio !== 'undefined')
+      {
+        $( "#" + obj.tab1.Group1.roradio ).iCheck('check');
+      }
+      if(typeof obj.tab1.Group1.rwslide !== 'undefined')
+      {
+        $( "#rswlide" ).val(obj.tab1.Group1.rwslide).trigger('change');
+      }
+      if(typeof obj.tab1.Group1.roslide !== 'undefined')
+      {
+        $( "#roslide" ).val(obj.tab1.Group1.roslide).trigger('change');
+      }
     }
-    case "roradio":
-      $( "#" + obj["roradio"] ).iCheck('check');
-      break;
-    case "roslide":
-      $( "#roslide" ).val(obj["roslide"]).trigger('change');;
-      break;
-    case "rwtxt":
-      $("#rwtxt").html(obj["rwtxt"]);
-      break;
-    case "rwchk":
+    if(typeof obj.tab1.Group2 !== 'undefined')
     {
-      if(obj["rwchk"])
+      if(typeof obj.tab1.Group2.drop !== 'undefined')
       {
-        $( "#rwchk" ).removeClass("toggle-false");
-        $( "#rwchk" ).addClass("toggle-true");
+        $('#drop').val(obj.tab1.Group2.drop);
+        $("#drop").selectmenu("refresh");
       }
-      else
+      if(typeof obj.tab1.Group2.history !== 'undefined')
       {
-        $( "#rwchk" ).removeClass("toggle-true");
-        $( "#rwchk" ).addClass("toggle-false");
+        if (historyData.length > 0)
+        {
+          historyData = historyData.slice(obj.tab1.Group2.history.length);
+          historyData = historyData.concat(obj.tab1.Group2.history);
+        }
+        else
+          historyData = obj.tab1.Group2.history;
+        historyPlot.setData([historyData]);
+        historyPlot.setupGrid();
+        historyPlot.draw();
       }
-      break;
     }
-    case "rwradio":
-      $( "#" + obj["rwradio"] ).iCheck('check');
-      break;
-    case "rwslide":
-      $( "#rwslide" ).val(obj["rwslide"]).trigger('change');
-      break;
-    case "roclr":
-      $( "#roclr" ).css('background', obj["roclr"]);
-      break;
+  }
+  if(typeof obj.tab2 !== 'undefined')
+  {
+    if(typeof obj.tab2.subtab1 !== 'undefined')
+    {
+      if(typeof obj.tab2.subtab1.multihistory0 !== 'undefined')
+      {
+        if (multiHistoryData[0].data.length > 0)
+        {
+          multiHistoryData[0].data = multiHistoryData[0].data.slice(obj.tab2.subtab1.multihistory0.length);
+          multiHistoryData[0].data = multiHistoryData[0].data.concat(obj.tab2.subtab1.multihistory0);
+        }
+        else
+          multiHistoryData[0].data = obj.tab2.subtab1.multihistory0;
+        multiHistoryPlot.setData(multiHistoryData);
+        multiHistoryPlot.setupGrid();
+        multiHistoryPlot.draw();
+      }
+      if(typeof obj.tab2.subtab1.multihistory1 !== 'undefined')
+      {
+        if (multiHistoryData[1].data.length > 0)
+        {
+          multiHistoryData[1].data = multiHistoryData[1].data.slice(obj.tab2.subtab1.multihistory1.length);
+          multiHistoryData[1].data = multiHistoryData[1].data.concat(obj.tab2.subtab1.multihistory1);
+        }
+        else
+          multiHistoryData[1].data = obj.tab2.subtab1.multihistory1;
+        multiHistoryPlot.setData(multiHistoryData);
+        multiHistoryPlot.setupGrid();
+        multiHistoryPlot.draw();
+      }
+      if(typeof obj.tab2.subtab1.multihistory2 !== 'undefined')
+      {
+        if (multiHistoryData[2].data.length > 0)
+        {
+          multiHistoryData[2].data = multiHistoryData[2].data.slice(obj.tab2.subtab1.multihistory2.length);
+          multiHistoryData[2].data = multiHistoryData[2].data.concat(obj.tab2.subtab1.multihistory2);
+        }
+        else
+          multiHistoryData[2].data = obj.tab2.subtab1.multihistory2;
+        multiHistoryPlot.setData(multiHistoryData);
+        multiHistoryPlot.setupGrid();
+        multiHistoryPlot.draw();
+      }
+    }
+    if(typeof obj.tab2.subtab2 !== 'undefined')
+    {
+      if(typeof obj.tab2.subtab2.roclr !== 'undefined')
+      {
+        $( "#roclr" ).css('background', obj.tab2.subtab2.roclr);
+      }
+      if(typeof obj.tab2.subtab2.rwclr !== 'undefined')
+      {
+        $("rwclr").colpickSetColor(obj.tab2.subtab2.rwclr);
+      }
+    }
   }
 }
 
@@ -454,15 +448,11 @@ function generatedInputHandlerFn()
   $("#rwtxt").change(function()
   {
     var obj = {
-      rwtxt: $("#rwtxt")[0].value
-    };
-    websocket.send(JSON.stringify(obj));
-  });
-
-  $("#rwslide").change(function()
-  {
-    var obj = {
-      rwslide: parseFloat($("#rwslide")[0].value)
+      tab1: {
+        Group1: {
+          rwtxt: $("#rwtxt")[0].value
+        }
+      }      
     };
     websocket.send(JSON.stringify(obj));
   });
@@ -470,7 +460,11 @@ function generatedInputHandlerFn()
   $("#rwchk").change(function()
   {
     var obj = {
-      rwchk: $("#rwchk")[0].checked
+      tab1: {
+        Group1: {
+          rwchk: $("#rwchk")[0].checked
+        }
+      }
     };
     websocket.send(JSON.stringify(obj));
   });
@@ -478,7 +472,11 @@ function generatedInputHandlerFn()
   $("#rwradio_0").on('ifChecked', function()
   {
     var obj = {
-      rwradio: "rwradio_0"
+      tab1: {
+        Group1: {
+          rwradio: "rwradio_0"
+        }
+      }
     };
     websocket.send(JSON.stringify(obj));
   });
@@ -486,7 +484,11 @@ function generatedInputHandlerFn()
   $("#rwradio_1").on('ifChecked', function()
   {
     var obj = {
-      rwradio: "rwradio_1"
+      tab1: {
+        Group1: {
+          rwradio: "rwradio_1"
+        }
+      }
     };
     if($("#rwradio_1")[0].checked) websocket.send(JSON.stringify(obj));
   });
@@ -494,7 +496,11 @@ function generatedInputHandlerFn()
   $("#rwradio_2").on('ifChecked', function()
   {
     var obj = {
-      rwradio: "rwradio_2"
+      tab1: {
+        Group1: {
+          rwradio: "rwradio_2"
+        }
+      }
     };
     if($("#rwradio_2")[0].checked) websocket.send(JSON.stringify(obj));
   });
@@ -502,7 +508,11 @@ function generatedInputHandlerFn()
   $("#rwradio_3").on('ifChecked', function()
   {
     var obj = {
-      rwradio: "rwradio_3"
+      tab1: {
+        Group1: {
+          rwradio: "rwradio_3"
+        }
+      }
     };
     if($("#rwradio_3")[0].checked) websocket.send(JSON.stringify(obj));
   });
@@ -510,7 +520,11 @@ function generatedInputHandlerFn()
   $( "#drop" ).on( "selectmenuchange", function(event, ui)
   {
     var obj = {
-      drop: ui.item.value
+      tab1: {
+        Group2: {
+          drop: ui.item.value
+        }
+      }
     }
     websocket.send(JSON.stringify(obj));
   });
@@ -522,7 +536,11 @@ function generatedInputHandlerFn()
     submit: 0,
     onChange: function (col, hex, rgb) {
       var obj = {
-        rwclr: '#'+hex
+        tab2: {
+          subtab2: {
+            rwclr: '#'+hex
+          }
+        }
       }
       websocket.send(JSON.stringify(obj));
     }
