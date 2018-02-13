@@ -3,7 +3,7 @@
 function generatedResizeFn()
 {
     // roslide
-    var div = $( "#roslide_div" );
+    var div = $( "#tab2\\.subtab3\\.Subpage1\\.roslide_div" );
     var minDivWidth = Math.max(div.width(), div.parent().width());
     var minDivHeight = div.height();
     div.resizable({
@@ -20,7 +20,7 @@ function generatedCheckFunction(event)
 
 function generatedDialFn()
 {
-  var input = $( "#roslide" );
+  var input = $( "#tab2\\.subtab3\\.Subpage1\\.roslide" );
   input.knob({
     min: 25,
     max: 100,
@@ -37,11 +37,6 @@ function generatedGraphFn()
 {
 }
 
-function generatedConnectFn(obj)
-{
-  $( "#roslide" ).val(obj["roslide"]).trigger('change');;
-}
-
 function generatedUpdateFn(obj)
 {
   if(typeof obj.tab2 !== 'undefined')
@@ -52,7 +47,7 @@ function generatedUpdateFn(obj)
       {
         if(typeof obj.tab2.subtab3.Subpage1.roslide !== 'undefined') 
         {
-          $( "#roslide" ).val(obj.tab2.subtab3.Subpage1.roslide).trigger('change');
+          $( "#tab2\\.subtab3\\.Subpage1\\.roslide" ).val(obj.tab2.subtab3.Subpage1.roslide).trigger('change');
         }
       }
     }

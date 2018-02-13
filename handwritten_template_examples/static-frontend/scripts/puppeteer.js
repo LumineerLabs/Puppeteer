@@ -71,17 +71,17 @@ function timer()
     );
 
     dialVal = val * 5 + 25;
-    $( "#roslide" ).val(dialVal).trigger('change');;
+    $( "#tab1.Group1.roslide" ).val(dialVal).trigger('change');;
 
     if(val > 5)
     {
-        $( "#rochk" ).removeClass("toggle-false");
-        $( "#rochk" ).addClass("toggle-true");
+        $( "#tab1.Group1.rochk" ).removeClass("toggle-false");
+        $( "#tab1.Group1.rochk" ).addClass("toggle-true");
     }
     else
     {
-        $( "#rochk" ).removeClass("toggle-true");
-        $( "#rochk" ).addClass("toggle-false");
+        $( "#tab1.Group1.rochk" ).removeClass("toggle-true");
+        $( "#tab1.Group1.rochk" ).addClass("toggle-false");
     }
 }
 

@@ -3,7 +3,7 @@
 function generatedResizeFn()
 {
     // rotxt
-    var div = $( "#rotxt_div" );
+    var div = $( "#tab1\\.Group1\\.rotxt_div" );
     var minDivWidth = Math.max(div.width(), div.parent().width());
     div.resizable({
         minHeight: div.height(),
@@ -12,7 +12,7 @@ function generatedResizeFn()
     div.width(minDivWidth);
     
     // rwtxt
-    var div = $( "#rwtxt_div" );
+    var div = $( "#tab1\\.Group1\\.rwtxt_div" );
     var minDivWidth = Math.max(div.width(), div.parent().width());
     div.resizable({
         minHeight: div.height(),
@@ -21,7 +21,7 @@ function generatedResizeFn()
     div.width(minDivWidth);
     
     // rochk
-    /*var div = $( "#rochk_div" );
+    /*var div = $( "#tab1\\.Group1\\.rochk_div" );
     var minDivWidth = Math.max(div.width(), div.parent().width());
     var minDivHeight = Math.max(25, minDivWidth);
     div.resizable({
@@ -32,7 +32,7 @@ function generatedResizeFn()
     div.height(minDivHeight);*/
     
     // rwchk
-    var div = $( "#rwchk_div" );
+    var div = $( "#tab1\\.Group1\\.rwchk_div" );
     var minDivWidth = Math.max(div.width(), div.parent().width());
     div.resizable({
         minHeight: div.height(),
@@ -41,7 +41,7 @@ function generatedResizeFn()
     div.width(minDivWidth);
 
     // roradio
-    var div = $( "#roradio_div" );
+    var div = $( "#tab1\\.Group1\\.roradio_div" );
     var minDivWidth = Math.max(div.width(), div.parent().width());
     div.resizable({
         minHeight: div.height(),
@@ -50,7 +50,7 @@ function generatedResizeFn()
     div.width(minDivWidth);
 
     // rwradio
-    var div = $( "#rwradio_div" );
+    var div = $( "#tab1\\.Group1\\.rwradio_div" );
     var minDivWidth = Math.max(div.width(), div.parent().width());
     div.resizable({
         minHeight: div.height(),
@@ -59,7 +59,7 @@ function generatedResizeFn()
     div.width(minDivWidth);
 
     // roslide
-    var div = $( "#roslide_div" );
+    var div = $( "#tab1\\.Group1\\.roslide_div" );
     var minDivWidth = Math.max(div.width(), div.parent().width());
     var minDivHeight = div.height();
     div.resizable({
@@ -70,7 +70,7 @@ function generatedResizeFn()
     div.height(minDivHeight);
 
     // rwslide
-    var div = $( "#rwslide_div" );
+    var div = $( "#tab1\\.Group1\\.rwslide_div" );
     var minDivWidth = Math.max(div.width(), div.parent().width());
     var minDivHeight = div.height();
     div.resizable({
@@ -81,7 +81,7 @@ function generatedResizeFn()
     div.height(minDivHeight);
 
     // history
-    var div = $( "#history_div" );
+    var div = $( "#tab1\\.Group2\\.history_div" );
     var minDivWidth = Math.max(div.width(), div.parent().width(), 600);
     div.resizable({
         minHeight: minDivWidth/3,
@@ -89,7 +89,7 @@ function generatedResizeFn()
       });
     div.width(minDivWidth);
     div.height(minDivWidth/3);
-    var div = $( "#history" );
+    var div = $( "#tab1\\.Group2\\.history" );
     div.resizable({
         minHeight: minDivWidth/3,
         minWidth: minDivWidth
@@ -106,7 +106,7 @@ function generatedResizeFn()
     div.width(minDivWidth);*/
 
     // history
-    var div = $( "#multihistory_div" );
+    var div = $( "#tab2\\.subtab1\\.multihistory_div" );
     var minDivWidth = Math.max(div.width(), div.parent().width(), 600);
     div.resizable({
         minHeight: minDivWidth/3,
@@ -114,14 +114,14 @@ function generatedResizeFn()
       });
     div.width(minDivWidth);
     div.height(minDivWidth/3);
-    var div = $( "#multihistory" );
+    var div = $( "#tab2\\.subtab1\\.multihistory" );
     div.resizable({
         minHeight: minDivWidth/3,
         minWidth: minDivWidth
       });
 
     // roclr
-    var div = $( "#roclr_div" );
+    var div = $( "#tab2\\.subtab2\\.roclr_div" );
     var minDivWidth = Math.max(div.width(), div.parent().width());
     div.resizable({
         minHeight: div.height(),
@@ -130,7 +130,7 @@ function generatedResizeFn()
     div.width(minDivWidth);
     
     // rwclr
-    var div = $( "#rwclr_div" );
+    var div = $( "#tab2\\.subtab2\\.rwclr_div" );
     var minDivWidth = Math.max(div.width(), div.parent().width());
     div.resizable({
         minHeight: div.height(),
@@ -144,23 +144,23 @@ function generatedCheckFunction(event)
   /*switch(event.target.id)
   {
     case "rwradio_0":
-      $( "#roradio_0" ).iCheck('check');
+      $( "#tab1\\.Group1\\.roradio_0" ).iCheck('check');
       break;
     case "rwradio_1":
-      $( "#roradio_1" ).iCheck('check');
+      $( "#tab1\\.Group1\\.roradio_1" ).iCheck('check');
       break;
     case "rwradio_2":
-      $( "#roradio_2" ).iCheck('check');
+      $( "#tab1\\.Group1\\.roradio_2" ).iCheck('check');
       break;
     case "rwradio_3":
-      $( "#roradio_3" ).iCheck('check');
+      $( "#tab1\\.Group1\\.roradio_3" ).iCheck('check');
       break;
   }*/
 }
 
 function generatedDialFn()
 {
-  var input = $( "#roslide" );
+  var input = $( "#tab1\\.Group1\\.roslide" );
   input.knob({
     min: 25,
     max: 100,
@@ -172,7 +172,7 @@ function generatedDialFn()
     bgColor:"#2f2d2d"
   });
   
-  var input = $( "#rwslide" );
+  var input = $( "#tab1\\.Group1\\.rwslide" );
   input.knob({
     min: 0,
     max: 30,
@@ -196,7 +196,7 @@ function generatedDialFn()
 
 function generatedGraphFn()
 {
-  historyPlot = $.plot($("#history"), [ { color: 3, data: [ ] } ], 
+  historyPlot = $.plot($("#tab1\\.Group2\\.history"), [ { color: 3, data: [ ] } ], 
     {
       colors: ["#33b5e5"],
       yaxis: 
@@ -229,21 +229,21 @@ function generatedGraphFn()
     opacity: 0.80
   }).appendTo("body");
 
-  $("#history").bind("plothover", function (event, pos, item) 
+  $("#tab1\\.Group2\\.history").bind("plothover", function (event, pos, item) 
   {
     if (item) {
       var x = item.datapoint[0].toFixed(2),
         y = item.datapoint[1].toFixed(2);
 
-      $("#history_tooltip").html("(" + x + ", " + y + ")")
+      $("#tab1\\.Group2\\.history_tooltip").html("(" + x + ", " + y + ")")
         .css({top: item.pageY+5, left: item.pageX+5})
         .fadeIn(200);
     } else {
-      $("#history_tooltip").hide();
+      $("#tab1\\.Group2\\.history_tooltip").hide();
     }
   });
 
-  multiHistoryPlot = $.plot($("#multihistory"), [ multiHistoryData ], 
+  multiHistoryPlot = $.plot($("#tab2\\.subtab1\\.multihistory"), [ multiHistoryData ], 
     {
       yaxis: 
       { 
@@ -275,17 +275,17 @@ function generatedGraphFn()
     opacity: 0.80
   }).appendTo("body");
 
-  $("#multihistory").bind("plothover", function (event, pos, item) 
+  $("#tab2\\.subtab1\\.multihistory").bind("plothover", function (event, pos, item) 
   {
     if (item) {
       var x = item.datapoint[0].toFixed(2),
         y = item.datapoint[1].toFixed(2);
 
-      $("#multihistory_tooltip").html("(" + x + ", " + y + ")")
+      $("#tab2\\.subtab1\\.multihistory_tooltip").html("(" + x + ", " + y + ")")
         .css({top: item.pageY+5, left: item.pageX+5})
         .fadeIn(200);
     } else {
-      $("#multihistory_tooltip").hide();
+      $("#tab2\\.subtab1\\.multihistory_tooltip").hide();
     }
   });
 }
@@ -298,45 +298,45 @@ function generatedUpdateFn(obj)
     {
       if(typeof obj.tab1.Group1.rotxt !== 'undefined') 
       {
-        $("#rotxt").html(obj.tab1.Group1.rotxt);
+        $("#tab1\\.Group1\\.rotxt").html(obj.tab1.Group1.rotxt);
       }
       if(typeof obj.tab1.Group1.rwtxt !== 'undefined') 
       {
-        $("#rwtxt").html(obj.tab1.Group1.rwtxt);
+        $("#tab1\\.Group1\\.rwtxt").html(obj.tab1.Group1.rwtxt);
       }
       if(typeof obj.tab1.Group1.rwchk !== 'undefined')
       {
         if(obj.tab1.Group1.rwchk)
         {
-          $( "#rwchk" ).removeClass("toggle-false");
-          $( "#rwchk" ).addClass("toggle-true");
+          $( "#tab1\\.Group1\\.rwchk" ).removeClass("toggle-false");
+          $( "#tab1\\.Group1\\.rwchk" ).addClass("toggle-true");
         }
         else
         {
-          $( "#rwchk" ).removeClass("toggle-true");
-          $( "#rwchk" ).addClass("toggle-false");
+          $( "#tab1\\.Group1\\.rwchk" ).removeClass("toggle-true");
+          $( "#tab1\\.Group1\\.rwchk" ).addClass("toggle-false");
         }
       }
       if(typeof obj.tab1.Group1.rochk !== 'undefined')
       {
         if(obj.tab1.Group1.rochk)
         {
-          $( "#rochk" ).removeClass("toggle-false");
-          $( "#rochk" ).addClass("toggle-true");
+          $( "#tab1\\.Group1\\.rochk" ).removeClass("toggle-false");
+          $( "#tab1\\.Group1\\.rochk" ).addClass("toggle-true");
         }
         else
         {
-          $( "#rochk" ).removeClass("toggle-true");
-          $( "#rochk" ).addClass("toggle-false");
+          $( "#tab1\\.Group1\\.rochk" ).removeClass("toggle-true");
+          $( "#tab1\\.Group1\\.rochk" ).addClass("toggle-false");
         }
       }
       if(typeof obj.tab1.Group1.rwradio !== 'undefined')
       {
-        $( "#" + obj.tab1.Group1.rwradio ).iCheck('check');
+        $( "#tab1\\.Group1\\." + obj.tab1.Group1.rwradio ).iCheck('check');
       }
       if(typeof obj.tab1.Group1.roradio !== 'undefined')
       {
-        $( "#" + obj.tab1.Group1.roradio ).iCheck('check');
+        $( "#tab1\\.Group1\\." + obj.tab1.Group1.roradio ).iCheck('check');
       }
       if(typeof obj.tab1.Group1.rwslide !== 'undefined')
       {
@@ -344,15 +344,15 @@ function generatedUpdateFn(obj)
       }
       if(typeof obj.tab1.Group1.roslide !== 'undefined')
       {
-        $( "#roslide" ).val(obj.tab1.Group1.roslide).trigger('change');
+        $( "#tab1\\.Group1\\.roslide" ).val(obj.tab1.Group1.roslide).trigger('change');
       }
     }
     if(typeof obj.tab1.Group2 !== 'undefined')
     {
       if(typeof obj.tab1.Group2.drop !== 'undefined')
       {
-        $('#drop').val(obj.tab1.Group2.drop);
-        $("#drop").selectmenu("refresh");
+        $('#tab1\\.Group2\\.drop').val(obj.tab1.Group2.drop);
+        $("#tab1\\.Group2\\.drop").selectmenu("refresh");
       }
       if(typeof obj.tab1.Group2.history !== 'undefined')
       {
@@ -417,7 +417,7 @@ function generatedUpdateFn(obj)
     {
       if(typeof obj.tab2.subtab2.roclr !== 'undefined')
       {
-        $( "#roclr" ).css('background', obj.tab2.subtab2.roclr);
+        $( "#tab2\\.subtab2\\.roclr" ).css('background', obj.tab2.subtab2.roclr);
       }
       if(typeof obj.tab2.subtab2.rwclr !== 'undefined')
       {
@@ -445,31 +445,31 @@ function fetchHistoryData()
 
 function generatedInputHandlerFn()
 {
-  $("#rwtxt").change(function()
+  $("#tab1\\.Group1\\.rwtxt").change(function()
   {
     var obj = {
       tab1: {
         Group1: {
-          rwtxt: $("#rwtxt")[0].value
+          rwtxt: $("#tab1\\.Group1\\.rwtxt")[0].value
         }
       }      
     };
     websocket.send(JSON.stringify(obj));
   });
 
-  $("#rwchk").change(function()
+  $("#tab1\\.Group1\\.rwchk").change(function()
   {
     var obj = {
       tab1: {
         Group1: {
-          rwchk: $("#rwchk")[0].checked
+          rwchk: $("#tab1\\.Group1\\.rwchk")[0].checked
         }
       }
     };
     websocket.send(JSON.stringify(obj));
   });
 
-  $("#rwradio_0").on('ifChecked', function()
+  $("#tab1\\.Group1\\.rwradio_0").on('ifChecked', function()
   {
     var obj = {
       tab1: {
@@ -481,7 +481,7 @@ function generatedInputHandlerFn()
     websocket.send(JSON.stringify(obj));
   });
 
-  $("#rwradio_1").on('ifChecked', function()
+  $("#tab1\\.Group1\\.rwradio_1").on('ifChecked', function()
   {
     var obj = {
       tab1: {
@@ -490,10 +490,10 @@ function generatedInputHandlerFn()
         }
       }
     };
-    if($("#rwradio_1")[0].checked) websocket.send(JSON.stringify(obj));
+    if($("#tab1\\.Group1\\.rwradio_1")[0].checked) websocket.send(JSON.stringify(obj));
   });
 
-  $("#rwradio_2").on('ifChecked', function()
+  $("#tab1\\.Group1\\.rwradio_2").on('ifChecked', function()
   {
     var obj = {
       tab1: {
@@ -502,10 +502,10 @@ function generatedInputHandlerFn()
         }
       }
     };
-    if($("#rwradio_2")[0].checked) websocket.send(JSON.stringify(obj));
+    if($("#tab1\\.Group1\\.rwradio_2")[0].checked) websocket.send(JSON.stringify(obj));
   });
 
-  $("#rwradio_3").on('ifChecked', function()
+  $("#tab1\\.Group1\\.rwradio_3").on('ifChecked', function()
   {
     var obj = {
       tab1: {
@@ -514,10 +514,10 @@ function generatedInputHandlerFn()
         }
       }
     };
-    if($("#rwradio_3")[0].checked) websocket.send(JSON.stringify(obj));
+    if($("#tab1\\.Group1\\.rwradio_3")[0].checked) websocket.send(JSON.stringify(obj));
   });
 
-  $( "#drop" ).on( "selectmenuchange", function(event, ui)
+  $( "#tab1\\.Group2\\.drop" ).on( "selectmenuchange", function(event, ui)
   {
     var obj = {
       tab1: {
@@ -529,7 +529,7 @@ function generatedInputHandlerFn()
     websocket.send(JSON.stringify(obj));
   });
 
-  $('#rwclr').colpick({
+  $('#tab2\\.subtab2\\.rwclr').colpick({
     color: '#0000ff',
     flat: true,
     colorScheme: 'dark',
