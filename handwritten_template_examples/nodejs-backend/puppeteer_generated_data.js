@@ -32,244 +32,250 @@ exports.init = function(app)
     // load the defaults, the application should overwrite these after this function, if values are persisted
     // server -> client
     var chroma = require("chroma-js");
-    module.exports.data = new Map();
-    module.exports.data["tab1"] = new Map();
-    module.exports.data["tab2"] = new Map();
-    module.exports.data["tab1"]["Group1"] = new Map();
-    module.exports.data["tab1"]["Group2"] = new Map();
-    module.exports.data["tab2"]["subtab1"] = new Map();
-    module.exports.data["tab2"]["subtab2"] = new Map();
-    module.exports.data["tab2"]["subtab3"] = new Map();
-    module.exports.data["tab2"]["subtab3"]["Subpage1"] = new Map();
-
-    module.exports.data["tab1"]["Group2"]["history"] = data_model.HistoryData(0, 100, (val) => 
-    {
-        var obj = {
-            tab1: {
-                Group2: {
-                    history: [val]
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
-    module.exports.data["tab2"]["subtab1"]["multihistory0"] = data_model.HistoryData(0, 100, (val) => 
-    {
-        var obj = {
-            tab2: {
-                subtab1: {
-                    multihistory0: [val]
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
-    module.exports.data["tab2"]["subtab1"]["multihistory1"] = data_model.HistoryData(0, 100, (val) => 
-    {
-        var obj = {
-            tab2: {
-                subtab1: {
-                    multihistory1: [val]
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
-    module.exports.data["tab2"]["subtab1"]["multihistory2"] = data_model.HistoryData(0, 100, (val) => 
-    {
-        var obj = {
-            tab2: {
-                subtab1: {
-                    multihistory2: [val]
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
-    module.exports.data["tab1"]["Group1"]["rotxt"] = data_model.Datum(5, (val) => 
-    {
-        var obj = {
-            tab1: {
-                Group1: {
-                    rotxt: val
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
-    module.exports.data["tab1"]["Group1"]["rochk"] = data_model.Datum(true, (val) => 
-    {
-        var obj = {
-            tab1: {
-                Group1: {
-                    rochk: val
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
-    module.exports.data["tab1"]["Group1"]["roradio"] = data_model.Datum(module.exports.RORADIOVALS.roradio_3, (val) => 
-    {
-        var obj = {
-            tab1: {
-                Group1: {
-                    roradio: val
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
-    module.exports.data["tab1"]["Group1"]["roslide"] = data_model.Datum(80, (val) => 
-    {
-        var obj = {
-            tab1: {
-                Group1: {
-                    roslide: val
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
-
-    // client -> server
-    module.exports.data["tab1"]["Group1"]["rwtxt"] = data_model.Datum("", (val) => 
-    {
-        var obj = {
-            tab1: {
-                Group1: {
-                    rwtxt: val
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
-    module.exports.data["tab1"]["Group1"]["rwchk"] = data_model.Datum(true, (val) => 
-    {
-        var obj = {
-            tab1: {
-                Group1: {
-                    rwchk: val
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
-    module.exports.data["tab1"]["Group1"]["rwradio"] = data_model.Datum(module.exports.RWRADIOVALS.rwradio_0, (val) => 
-    {
-        var obj = {
-            tab1: {
-                Group1: {
-                    rwradio: val
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
-    module.exports.data["tab1"]["Group1"]["rwslide"] = data_model.Datum(5.5, (val) => 
-    {
-        var obj = {
-            tab1: {
-                Group1: {
-                    rwslide: val
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
-    module.exports.data["tab2"]["subtab2"]["roclr"] = data_model.Datum(chroma('red'), (val) => 
-    {
-        var obj = {
-            tab2: {
-                subtab2: {
-                    roclr: val.hex()
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
-    module.exports.data["tab2"]["subtab2"]["rwclr"] = data_model.Datum(chroma('red'), (val) => 
-    {
-        var obj = {
-            tab2: {
-                subtab2: {
-                    rwclr: val.hex()
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
-    module.exports.data["tab1"]["Group2"]["drop"] = data_model.Datum(module.exports.DROPVALS.drop3, (val) =>
-    {
-        var obj = {
-            tab1: {
-                Group2: {
-                    drop: val
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
-    module.exports.data["tab2"]["subtab3"]["Subpage1"]["roslide"] = data_model.Datum(15, (val) =>
-    {
-        var obj = {
-            tab2: {
-                subtab3: {
-                    Subpage1: {
-                        roslide: val
+    module.exports.data = {
+        tab1: {
+            Group1: {
+                rotxt: data_model.Datum(5, (val) => 
+                {
+                    var obj = {
+                        tab1: {
+                            Group1: {
+                                rotxt: val
+                            }
+                        }
                     }
-                }
-            }
-        }
-        for(var i in wsclients)
-        {
-            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
-        }
-    });
+                    for(var i in wsclients)
+                    {
+                        if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                    }
+                }),
+                rochk: data_model.Datum(true, (val) => 
+                {
+                    var obj = {
+                        tab1: {
+                            Group1: {
+                                rochk: val
+                            }
+                        }
+                    }
+                    for(var i in wsclients)
+                    {
+                        if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                    }
+                }),
+                roradio: data_model.Datum(module.exports.RORADIOVALS.roradio_3, (val) => 
+                {
+                    var obj = {
+                        tab1: {
+                            Group1: {
+                                roradio: val
+                            }
+                        }
+                    }
+                    for(var i in wsclients)
+                    {
+                        if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                    }
+                }),
+                roslide: data_model.Datum(80, (val) => 
+                {
+                    var obj = {
+                        tab1: {
+                            Group1: {
+                                roslide: val
+                            }
+                        }
+                    }
+                    for(var i in wsclients)
+                    {
+                        if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                    }
+                }),
+                rwtxt: data_model.Datum("", (val) => 
+                {
+                    var obj = {
+                        tab1: {
+                            Group1: {
+                                rwtxt: val
+                            }
+                        }
+                    }
+                    for(var i in wsclients)
+                    {
+                        if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                    }
+                }),
+                rwchk: data_model.Datum(true, (val) => 
+                {
+                    var obj = {
+                        tab1: {
+                            Group1: {
+                                rwchk: val
+                            }
+                        }
+                    }
+                    for(var i in wsclients)
+                    {
+                        if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                    }
+                }),
+                rwradio: data_model.Datum(module.exports.RWRADIOVALS.rwradio_0, (val) => 
+                {
+                    var obj = {
+                        tab1: {
+                            Group1: {
+                                rwradio: val
+                            }
+                        }
+                    }
+                    for(var i in wsclients)
+                    {
+                        if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                    }
+                }),
+                rwslide: data_model.Datum(5.5, (val) => 
+                {
+                    var obj = {
+                        tab1: {
+                            Group1: {
+                                rwslide: val
+                            }
+                        }
+                    }
+                    for(var i in wsclients)
+                    {
+                        if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                    }
+                }),
+            },
+            Group2: {
+                history: data_model.HistoryData(0, 100, (val) => 
+                {
+                    var obj = {
+                        tab1: {
+                            Group2: {
+                                history: [val]
+                            }
+                        }
+                    }
+                    for(var i in wsclients)
+                    {
+                        if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                    }
+                }),
+                drop: data_model.Datum(module.exports.DROPVALS.drop3, (val) =>
+                {
+                    var obj = {
+                        tab1: {
+                            Group2: {
+                                drop: val
+                            }
+                        }
+                    }
+                    for(var i in wsclients)
+                    {
+                        if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                    }
+                }),
+            },
+        },
+        tab2: {
+            subtab1: {
+                multihistory0: data_model.HistoryData(0, 100, (val) => 
+                {
+                    var obj = {
+                        tab2: {
+                            subtab1: {
+                                multihistory0: [val]
+                            }
+                        }
+                    }
+                    for(var i in wsclients)
+                    {
+                        if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                    }
+                }),
+                multihistory1:  data_model.HistoryData(0, 100, (val) => 
+                {
+                    var obj = {
+                        tab2: {
+                            subtab1: {
+                                multihistory1: [val]
+                            }
+                        }
+                    }
+                    for(var i in wsclients)
+                    {
+                        if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                    }
+                }),
+                multihistory2: data_model.HistoryData(0, 100, (val) => 
+                {
+                    var obj = {
+                        tab2: {
+                            subtab1: {
+                                multihistory2: [val]
+                            }
+                        }
+                    }
+                    for(var i in wsclients)
+                    {
+                        if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                    }
+                }),
+            },
+            subtab2: {
+                roclr: data_model.Datum(chroma('red'), (val) => 
+                {
+                    var obj = {
+                        tab2: {
+                            subtab2: {
+                                roclr: val.hex()
+                            }
+                        }
+                    }
+                    for(var i in wsclients)
+                    {
+                        if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                    }
+                }),
+                rwclr: data_model.Datum(chroma('red'), (val) => 
+                {
+                    var obj = {
+                        tab2: {
+                            subtab2: {
+                                rwclr: val.hex()
+                            }
+                        }
+                    }
+                    for(var i in wsclients)
+                    {
+                        if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                    }
+                }),
+            },
+            subtab3: {
+                Subpage1: {
+                    roslide: data_model.Datum(15, (val) =>
+                    {
+                        var obj = {
+                            tab2: {
+                                subtab3: {
+                                    Subpage1: {
+                                        roslide: val
+                                    }
+                                }
+                            }
+                        }
+                        for(var i in wsclients)
+                        {
+                            if(wsclients[i].readyState===wsclients[i].OPEN) wsclients[i].send(JSON.stringify(obj));
+                        }
+                    }),
+                },
+            },
+        },  
+    }
 
     var expressWs = require('express-ws')(app);
 
@@ -280,33 +286,33 @@ exports.init = function(app)
         var data = {
             tab1: {
                 Group1: {
-                    rotxt: module.exports.data["tab1"]["Group1"]["rotxt"].value,
-                    rochk: module.exports.data["tab1"]["Group1"]["rochk"].value,
-                    roradio: module.exports.data["tab1"]["Group1"]["roradio"].value,
-                    roslide: module.exports.data["tab1"]["Group1"]["roslide"].value,
-                    rwtxt: module.exports.data["tab1"]["Group1"]["rwtxt"].value,
-                    rwchk: module.exports.data["tab1"]["Group1"]["rwchk"].value,
-                    rwradio: module.exports.data["tab1"]["Group1"]["rwradio"].value,
-                    rwslide: module.exports.data["tab1"]["Group1"]["rwslide"].value,
+                    rotxt: module.exports.data.tab1.Group1.rotxt.value,
+                    rochk: module.exports.data.tab1.Group1.rochk.value,
+                    roradio: module.exports.data.tab1.Group1.roradio.value,
+                    roslide: module.exports.data.tab1.Group1.roslide.value,
+                    rwtxt: module.exports.data.tab1.Group1.rwtxt.value,
+                    rwchk: module.exports.data.tab1.Group1.rwchk.value,
+                    rwradio: module.exports.data.tab1.Group1.rwradio.value,
+                    rwslide: module.exports.data.tab1.Group1.rwslide.value,
                 },
                 Group2: {
-                    drop: module.exports.data["tab1"]["Group2"]["drop"].value ,  
-                    history: module.exports.data["tab1"]["Group2"]["history"].history,
+                    drop: module.exports.data.tab1.Group2.drop.value,  
+                    history: module.exports.data.tab1.Group2.history.history,
                 }
             },
             tab2: {
                 subtab1: {
-                    multihistory0: module.exports.data["tab2"]["subtab1"]["multihistory0"].history, 
-                    multihistory1: module.exports.data["tab2"]["subtab1"]["multihistory1"].history, 
-                    multihistory2: module.exports.data["tab2"]["subtab1"]["multihistory2"].history,
+                    multihistory0: module.exports.data.tab2.subtab1.multihistory0.history, 
+                    multihistory1: module.exports.data.tab2.subtab1.multihistory1.history, 
+                    multihistory2: module.exports.data.tab2.subtab1.multihistory2.history,
                 },
                 subtab2: {
-                    roclr: module.exports.data["tab2"]["subtab2"]["roclr"].value.hex(),
-                    rwclr: module.exports.data["tab2"]["subtab2"]["rwclr"].value.hex(),
+                    roclr: module.exports.data.tab2.subtab2.roclr.value.hex(),
+                    rwclr: module.exports.data.tab2.subtab2.rwclr.value.hex(),
                 },
                 subtab3: {
                     Subpage1: {
-                        roslide: module.exports.data["tab2"]["subtab3"]["Subpage1"]["roslide"].value,
+                        roslide: module.exports.data.tab2.subtab3.Subpage1.roslide.value,
                     },
                 },
             },
@@ -324,26 +330,26 @@ exports.init = function(app)
                     console.log(obj);
                     if(typeof obj.tab1.Group1.rwtxt !== 'undefined') 
                     {
-                        module.exports.data["tab1"]["Group1"]["rwtxt"].value = obj.tab1.Group1.rwtxt;
+                        module.exports.data.tab1.Group1.rwtxt.value = obj.tab1.Group1.rwtxt;
                     }
                     if(typeof obj.tab1.Group1.rwchk !== 'undefined')
                     {
-                        module.exports.data["tab1"]["Group1"]["rwchk"].value = obj.tab1.Group1.rwchk;
+                        module.exports.data.tab1.Group1.rwchk.value = obj.tab1.Group1.rwchk;
                     }
                     if(typeof obj.tab1.Group1.rwradio !== 'undefined')
                     {
-                        module.exports.data["tab1"]["Group1"]["rwradio"].value = obj.tab1.Group1.rwradio;
+                        module.exports.data.tab1.Group1.rwradio.value = obj.tab1.Group1.rwradio;
                     }
                     if(typeof obj.tab1.Group1.rwslide !== 'undefined')
                     {
-                        module.exports.data["tab1"]["Group1"]["rwslide"].value = obj.tab1.Group1.rwslide;
+                        module.exports.data.tab1.Group1.rwslide.value = obj.tab1.Group1.rwslide;
                     }
                 }
                 if(typeof obj.tab1.Group2 !== 'undefined')
                 {
                     if(typeof obj.tab1.Group2.drop !== 'undefined')
                     {
-                        module.exports.data["tab1"]["Group2"]["drop"].value = obj.tab1.Group2.drop;
+                        module.exports.data.tab1.Group2.drop.value = obj.tab1.Group2.drop;
                     }
                 }
             }
@@ -353,7 +359,7 @@ exports.init = function(app)
                 {
                     if(typeof obj.tab2.subtab2.rwclr !== 'undefined')
                     {
-                        module.exports.data["tab2"]["subtab2"]["rwclr"].value = chroma(obj.tab2.subtab2.rwclr);
+                        module.exports.data.tab2.subtab2.rwclr.value = chroma(obj.tab2.subtab2.rwclr);
                     }
                 }
             }
