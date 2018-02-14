@@ -24,10 +24,6 @@ function puppeteerInit()
         radioClass: 'iradio_line-blue',
         insert: '<div class="icheck_line-icon"></div>' + label_text
         });
-
-        self.on('ifChecked', function(event) {
-            generatedCheckFunction(event);
-        });
     });
 
     $(".tabs").tabs();
@@ -54,45 +50,126 @@ function puppeteerInit()
         obj = $.parseJSON(event.data);
         generatedUpdateFn(obj);
     };
-    
-    //TODO: remove this code, this is to drive the inputs on a timer.
-    //window.setInterval(timer, 1000);
-    //window.setInterval(history_timer, 200);
 }
 
-//TODO: remove this code, this is to drive the inputs on a timer.
-function timer()
+function initResizable(div, minW = 0, aspect = undefined)
 {
-    var val = Math.floor((Math.random() * 10) + 1);
-    $( ".randval" ).html(function ()
-        {
-            return val;
+  var minDivWidth = Math.max(div.width(), div.parent().width(), minW);
+  var minDivHeight = aspect ? aspect * minDivWidth : div.height();
+  div.resizable({
+      minHeight: minDivHeight,
+      minWidth: minDivWidth
+    });
+  div.width(minDivWidth);
+  div.height(minDivHeight);
+}
+
+function initDial(input, min, max, step, readOnly, callback=undefined)
+{
+    input.knob({
+        min: min,
+        max: max,
+        step: step,
+        readOnly: readOnly,
+        angleOffset: -125,
+        angleArc: 250,
+        fgColor:"#33b5e5",
+        bgColor:"#2f2d2d",
+        change: callback,
+        draw: function () {
+
+            // "tron" case
+            if(this.$.data('skin') == 'inputdial') {
+
+                this.cursorExt = 0.3;
+
+                var a = this.arc(this.cv)  // Arc
+                        , pa                   // Previous arc
+                        , r = 1;
+
+                this.g.lineWidth = this.lineWidth;
+
+                if (this.o.bgColor !== "none") {
+                    this.g.beginPath();
+                    this.g.strokeStyle = this.o.bgColor;
+                    this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, this.endAngle - 0.00001, this.startAngle + 0.00001, true);
+                    this.g.stroke();
+                }
+
+                if (this.o.displayPrevious) {
+                    pa = this.arc(this.v);
+                    this.g.beginPath();
+                    this.g.strokeStyle = this.pColor;
+                    this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, pa.s, pa.e, pa.d);
+                    this.g.stroke();
+                }
+
+                this.g.beginPath();
+                this.g.strokeStyle = r ? this.o.fgColor : this.fgColor ;
+                this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, a.s, a.e, a.d);
+                this.g.stroke();
+
+                this.g.lineWidth = 2;
+                this.g.beginPath();
+                this.g.strokeStyle = this.o.fgColor;
+                this.g.arc( this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, this.startAngle, this.endAngle, false);
+                this.g.stroke();
+
+                return false;
+            }
         }
-    );
-
-    dialVal = val * 5 + 25;
-    $( "#tab1.Group1.roslide" ).val(dialVal).trigger('change');;
-
-    if(val > 5)
-    {
-        $( "#tab1.Group1.rochk" ).removeClass("toggle-false");
-        $( "#tab1.Group1.rochk" ).addClass("toggle-true");
-    }
-    else
-    {
-        $( "#tab1.Group1.rochk" ).removeClass("toggle-true");
-        $( "#tab1.Group1.rochk" ).addClass("toggle-false");
-    }
+    });
 }
 
-function history_timer()
+function initHistory(div, historyData, yMax, colors=undefined)
 {
-    if (historyData.length > 0)
-        historyData = historyData.slice(1);
-        lastHistoryX += (2*Math.PI)/100;
-        historyData.push([lastHistoryX, Math.sin(lastHistoryX) + 1]);
-        historyPlot.setData([historyData]);
-        historyPlot.setupGrid();
-        historyPlot.draw();
-        
+  var plot = $.plot(div, [ historyData ], 
+    {
+      colors: colors,
+      yaxis: 
+      { 
+        max: yMax
+      },
+      grid: 
+      {
+				hoverable: true
+			},
+      crosshair:
+      {
+        mode: "x"
+      },
+      lines:
+      {
+        show: true,
+        fill: true,
+        fillColor:  {colors:  [{ opacity: 0.1 }, { opacity: 0.1 }] }
+      }
+    }
+  );
+
+  $("<div id='" + div[0].id + "_tooltip'></div>").css({
+    position: "absolute",
+    display: "none",
+    border: "1px solid #666666",
+    padding: "2px",
+    "background-color": "#000000",
+    opacity: 0.80
+  }).appendTo("body");
+
+  var selector = "#" + div[0].id.replace(/[!"#$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&") + "_tooltip";
+
+  div.bind("plothover", function (event, pos, item) 
+  {
+    if (item) {
+      var x = item.datapoint[0].toFixed(2),
+        y = item.datapoint[1].toFixed(2);
+
+      $(selector).html("(" + x + ", " + y + ")")
+        .css({top: item.pageY+5, left: item.pageX+5})
+        .fadeIn(200);
+    } else {
+      $(selector).hide();
+    }
+  });
+  return plot;
 }

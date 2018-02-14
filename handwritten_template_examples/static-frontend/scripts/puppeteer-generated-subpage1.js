@@ -2,35 +2,12 @@
 
 function generatedResizeFn()
 {
-    // roslide
-    var div = $( "#tab2\\.subtab3\\.Subpage1\\.roslide_div" );
-    var minDivWidth = Math.max(div.width(), div.parent().width());
-    var minDivHeight = div.height();
-    div.resizable({
-        minHeight: minDivHeight,
-        minWidth: minDivWidth
-      });
-    div.width(minDivWidth);
-    div.height(minDivHeight);
-}
-
-function generatedCheckFunction(event)
-{
+  initResizable($("#tab2\\.subtab3\\.Subpage1\\.roslide_div"));
 }
 
 function generatedDialFn()
 {
-  var input = $( "#tab2\\.subtab3\\.Subpage1\\.roslide" );
-  input.knob({
-    min: 25,
-    max: 100,
-    step: 1,
-    readOnly: true,
-    angleOffset: -125,
-    angleArc: 250,
-    fgColor:"#33b5e5",
-    bgColor:"#2f2d2d"
-  });
+  initDial($("#tab2\\.subtab3\\.Subpage1\\.roslide"), 25, 100, 1, true);
 }
 
 function generatedGraphFn()
