@@ -36,6 +36,20 @@ function generatedGraphFn()
   multiHistoryPlot = initHistory($("#tab2\\.subtab1\\.multihistory"), multiHistoryData);
 }
 
+function updatePlot(plot, data, index, newData)
+{
+  if (data[index].data.length > 0)
+  {
+    data[index].data = data[index].data.slice(newData.length);
+    data[index].data = data[index].data.concat(newData);
+  }
+  else
+    data[index].data = newData;
+  plot.setData(data);
+  plot.setupGrid();
+  plot.draw();
+}
+
 function generatedUpdateFn(obj)
 {
   if(typeof obj.tab1 !== 'undefined')
@@ -102,16 +116,7 @@ function generatedUpdateFn(obj)
       }
       if(typeof obj.tab1.Group2.history !== 'undefined')
       {
-        if (historyData.length > 0)
-        {
-          historyData = historyData.slice(obj.tab1.Group2.history.length);
-          historyData = historyData.concat(obj.tab1.Group2.history);
-        }
-        else
-          historyData = obj.tab1.Group2.history;
-        historyPlot.setData([historyData]);
-        historyPlot.setupGrid();
-        historyPlot.draw();
+        updatePlot(historyPlot, historyData, 0, obj.tab1.Group2.history);
       }
     }
   }
@@ -121,42 +126,15 @@ function generatedUpdateFn(obj)
     {
       if(typeof obj.tab2.subtab1.multihistory0 !== 'undefined')
       {
-        if (multiHistoryData[0].data.length > 0)
-        {
-          multiHistoryData[0].data = multiHistoryData[0].data.slice(obj.tab2.subtab1.multihistory0.length);
-          multiHistoryData[0].data = multiHistoryData[0].data.concat(obj.tab2.subtab1.multihistory0);
-        }
-        else
-          multiHistoryData[0].data = obj.tab2.subtab1.multihistory0;
-        multiHistoryPlot.setData(multiHistoryData);
-        multiHistoryPlot.setupGrid();
-        multiHistoryPlot.draw();
+        updatePlot(multiHistoryPlot, multiHistoryData, 0, obj.tab2.subtab1.multihistory0);
       }
       if(typeof obj.tab2.subtab1.multihistory1 !== 'undefined')
       {
-        if (multiHistoryData[1].data.length > 0)
-        {
-          multiHistoryData[1].data = multiHistoryData[1].data.slice(obj.tab2.subtab1.multihistory1.length);
-          multiHistoryData[1].data = multiHistoryData[1].data.concat(obj.tab2.subtab1.multihistory1);
-        }
-        else
-          multiHistoryData[1].data = obj.tab2.subtab1.multihistory1;
-        multiHistoryPlot.setData(multiHistoryData);
-        multiHistoryPlot.setupGrid();
-        multiHistoryPlot.draw();
+        updatePlot(multiHistoryPlot, multiHistoryData, 1, obj.tab2.subtab1.multihistory1);
       }
       if(typeof obj.tab2.subtab1.multihistory2 !== 'undefined')
       {
-        if (multiHistoryData[2].data.length > 0)
-        {
-          multiHistoryData[2].data = multiHistoryData[2].data.slice(obj.tab2.subtab1.multihistory2.length);
-          multiHistoryData[2].data = multiHistoryData[2].data.concat(obj.tab2.subtab1.multihistory2);
-        }
-        else
-          multiHistoryData[2].data = obj.tab2.subtab1.multihistory2;
-        multiHistoryPlot.setData(multiHistoryData);
-        multiHistoryPlot.setupGrid();
-        multiHistoryPlot.draw();
+        updatePlot(multiHistoryPlot, multiHistoryData, 2, obj.tab2.subtab1.multihistory2);
       }
     }
     if(typeof obj.tab2.subtab2 !== 'undefined')

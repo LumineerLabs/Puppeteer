@@ -173,3 +173,17 @@ function initHistory(div, historyData, yMax, colors=undefined)
   });
   return plot;
 }
+
+function updatePlot(plot, data, index, newData)
+{
+  if (data[index].data.length > 0)
+  {
+    data[index].data = data[index].data.slice(newData.length);
+    data[index].data = data[index].data.concat(newData);
+  }
+  else
+    data[index].data = newData;
+  plot.setData(data);
+  plot.setupGrid();
+  plot.draw();
+}
