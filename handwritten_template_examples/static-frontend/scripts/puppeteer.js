@@ -2,14 +2,10 @@ var websocket;
 
 function puppeteerInit()
 {
-    generatedDialFn();
-    generatedResizeFn();
-    generatedGraphFn();
     generatedInputHandlerFn();
-
-    $( ".ui-sortable" ).sortable();
-    
-    $( ".ui-sortable" ).disableSelection();
+    generatedGridFn();
+    generatedDialFn();
+    generatedGraphFn();
 
     $(".dropwdowns").selectmenu();
     
@@ -27,6 +23,7 @@ function puppeteerInit()
     });
 
     $(".tabs").tabs();
+    $(".tabs").on("tabsactivate", function( event, ui ) { generatedGraphFn()});
     
     var loc = window.location, new_uri;
     if (loc.protocol === "https:") {
@@ -62,6 +59,83 @@ function initResizable(div, minW = 0, aspect = undefined)
     });
   div.width(minDivWidth);
   div.height(minDivHeight);
+}
+
+function initCell(selector, cellWidth, cellHeight, aspect = undefined, minW = 0, )
+{
+  var div = $(selector);
+  var cell = $(".grid-stack-item:has(" + selector + ")");
+  var minDivWidth = 0;
+  div.parent().children().each(function() {
+    var child = $(this);
+    minDivWidth += Math.max(minDivWidth, child.outerWidth(true));
+  });
+  minDivWidth = Math.max(div.width(), minW);
+
+  var minDivHeight = 0;
+  div.parent().children().each(function() {
+    var child = $(this);
+    if(child.is("h2"))
+    {
+      minDivHeight += child[0].scrollHeight * calculateWordWrap(child);
+    }
+    else
+    {
+      minDivHeight += child[0].scrollHeight;
+    }
+  });
+  
+  var tmpHeight = aspect ? aspect * minDivWidth : minDivHeight;
+
+  if(tmpHeight < minDivHeight)
+  {
+    minDivWidth = minDivHeight / aspect;
+  }
+  else
+  {
+    minDivHeight = tmpHeight;
+  }
+
+  var numCellsX = Math.max(1, Math.min(Math.ceil(minDivWidth / (cellWidth + 20), 12)));
+  var numCellsY = Math.max(1, Math.ceil(minDivHeight / (cellHeight + 20)));
+
+  cell.attr('data-gs-width', numCellsX)
+      .attr('data-gs-height', numCellsY);
+
+  return cell;
+}
+
+function initCellStatic(cell, width, height, cellWidth, cellHeight)
+{
+  var numCellsX = Math.max(1, Math.min(Math.ceil(minDivWidth / cellWidth), 12));
+  var numCellsY = Math.max(1, Math.ceil(minDivHeight / cellHeight));
+
+  cell.attr('data-gs-width', numCellsX)
+      .attr('data-gs-height', numCellsY);
+}
+
+function layoutCells(cells)
+{
+  var x = 0;
+  var y = 0;
+  var maxy = 0;
+
+  _.forEach(cells, function(value) {
+    var width = parseInt(value.attr('data-gs-width'));
+    var height = parseInt(value.attr('data-gs-height'));
+    if(12 <= x + width)
+    {
+      x = 0;
+      y = maxy+1;
+    }
+    if(y + height > maxy)
+    {
+      maxy = y + height;
+    }
+    value.attr('data-gs-x', x);
+    value.attr('data-gs-y', y);
+    x = x + width;
+  });
 }
 
 function initDial(input, min, max, step, readOnly, callback=undefined)
@@ -186,4 +260,15 @@ function updatePlot(plot, data, index, newData)
   plot.setData(data);
   plot.setupGrid();
   plot.draw();
+}
+
+function calculateWordWrap(div) 
+{
+  div.addClass("textDimensionCalculation");
+
+  var ratio = Math.ceil(div[0].scrollWidth / div.width());
+
+  div.removeClass("textDimensionCalculation");
+
+  return ratio;
 }

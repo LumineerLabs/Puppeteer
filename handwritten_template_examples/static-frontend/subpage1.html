@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="scripts/3rd_party/jquery-ui-1.12.1/jquery-ui.css">
-  <link rel="stylesheet" type="text/css"href="puppeteer.css">
   <link href="scripts/3rd_party/icheck/skins/line/blue.css" rel="stylesheet">
   <link rel="stylesheet" media="screen" type="text/css" href="scripts/3rd_party/colpick/css/colpick.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="scripts/3rd_party/gridstack/gridstack.css" />
+  <link rel="stylesheet" type="text/css"href="puppeteer.css">
 
   <title>Controller Example</title>
 
@@ -20,9 +21,12 @@
 	<script language="javascript" type="text/javascript" src="scripts/3rd_party/flot/jquery.flot.time.js"></script>
   <script language="javascript" type="text/javascript" src="scripts/3rd_party/flot/jquery.flot.crosshair.js"></script>
 	<script language="javascript" type="text/javascript" src="scripts/3rd_party/flot/jquery.flot.resize.js"></script>
+  <script type="text/javascript" src="scripts/3rd_party/colpick/js/colpick.js"></script>
+  <script type="text/javascript" src="scripts/3rd_party/lodash/lodash.js"></script>
+  <script type="text/javascript" src="scripts/3rd_party/gridstack/gridstack.js"></script>
+  <script type="text/javascript" src="scripts/3rd_party/gridstack/gridstack.JQueryUI.js"></script>
   <script src="scripts/puppeteer.js"></script>
   <script src="scripts/puppeteer-generated-subpage1.js"></script>
-  <script type="text/javascript" src="scripts/3rd_party/colpick/js/colpick.js"></script>
   <script>
       $( function() {
         puppeteerInit();
@@ -33,16 +37,16 @@
 <body>
   <h1 display="inline-block" class="breadcrumb-link"><a href="index.html">Puppeteer Widget Examples</a></h1>
   <h1 class="breadcrumb-title">&raquo; Subpage1<h1></h1>
-  <ul class="ui-sortable clearfix">    
+  <div class="grid-stack clearfix" data-gs-width=12>    
     <!--read only dial -->
-    <li>
-      <div class="panel">
+    <div class="grid-stack-item" data-gs-width="1" data-gs-height="1" data-gs-x="0" data-gs-y="0">
+      <div class="panel grid-stack-item-content">
         <h2 class="ui-widget-header text">Read Only Dial</h2>
         <div class="centered-panel" id="tab2.subtab3.Subpage1.roslide_div">
           <input type="text" value="75" class="dial" data-height=80% data-width=80% id="tab2.subtab3.Subpage1.roslide">
         </div>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </body>
 </html>

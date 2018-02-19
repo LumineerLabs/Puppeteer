@@ -261,11 +261,11 @@
         this._carve = function() {
             if (this.relative) {
                 var w = this.relativeWidth ?
-                        this.$div.parent().width() *
+                        this.$div.parent().parent().width() *
                         parseInt(this.o.width) / 100
                         : this.$div.parent().width(),
                     h = this.relativeHeight ?
-                        this.$div.parent().height() *
+                        this.$div.parent().parent().height() *
                         parseInt(this.o.height) / 100
                         : this.$div.parent().height();
 

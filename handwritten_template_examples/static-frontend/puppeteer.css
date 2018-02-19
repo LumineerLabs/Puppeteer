@@ -31,10 +31,15 @@ li
 
 .centered-panel
 {
-    position: relative;
+    position: absolute;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
+    
+    width: 100%;
+    height: auto;
+
+    padding: auto;
 }
 
 .ui-widget-header.text
@@ -79,7 +84,7 @@ li
     margin-left: auto;
     margin-right: auto;
     margin-top: auto;
-    margin-bottom: 12px;
+    margin-bottom: auto;
 }
 
 input[type=text]:focus 
@@ -255,7 +260,10 @@ input:checked + .slider:before
     background: #33b5e5;
 }
 
-
+.input-spacer
+{
+    padding: 18px;
+}
 
 input[type=text], .ui-selectmenu-button, .ui-selectmenu-button:hover, .ui-selectmenu-button:active, .ui-selectmenu-button:focus
 {
@@ -265,11 +273,14 @@ input[type=text], .ui-selectmenu-button, .ui-selectmenu-button:hover, .ui-select
     font-size: 100%;
     font-weight: 350;
     font-size: 1em;
-    width: 14em;
+    width: 100%;
     padding: 12px 20px;
     box-sizing: border-box;
-    margin: 18px;
-    margin-top: 0px;
+}
+
+.ui-selectmenu-button.ui-button
+{
+    width: 100%;
 }
 
 .ui-selectmenu-button, .ui-selectmenu-button:hover, .ui-selectmenu-button:active, .ui-selectmenu-button:focus
@@ -300,14 +311,17 @@ input[type=text], .ui-selectmenu-button, .ui-selectmenu-button:hover, .ui-select
 
  .group-header
  {
+    position: absolute;
     color: #d8d9da;
-    margin-bottom: -10px;
+    margin-top: -10px;
+    margin-bottom: 10px;
     background-color: #141414;
     margin-left:.8em;
     padding-left:.4em;
     padding-right:.4em;
     font-size: 1.2rem;
     font-weight: bold;
+    z-index: 1;
  }
 
  .ui-sortable
@@ -323,6 +337,7 @@ input[type=text], .ui-selectmenu-button, .ui-selectmenu-button:hover, .ui-select
  {
     border: 1px solid #23a5d5;
     border-radius: 10px 10px 10px 10px;
+    margin-bottom: 20px;
  }
 
  .tabs 
@@ -397,4 +412,31 @@ input[type=text], .ui-selectmenu-button, .ui-selectmenu-button:hover, .ui-select
     display: inline;
     font-weight: 700;
     font-size: 1.5em;
+}
+
+.graph-container
+{
+    height: 80%;
+}
+
+.grid-stack > .grid-stack-item > .grid-stack-item-content 
+{
+    overflow: hidden;
+}
+
+.colpick_field > input[type="text"], .colpick_hex_field > input[type="text"] 
+{
+    padding: 0px;
+    width: initial;
+}
+
+.colpick_field_letter 
+{
+    padding-right: 4px;
+    z-index: 1;
+}
+
+.textDimensionCalculation 
+{
+    white-space: nowrap;
 }
