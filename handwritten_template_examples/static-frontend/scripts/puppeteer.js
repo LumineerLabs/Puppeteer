@@ -189,6 +189,17 @@ function initDial(input, min, max, step, readOnly, callback=undefined)
                 this.g.arc( this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, this.startAngle, this.endAngle, false);
                 this.g.stroke();
 
+                this.g.save();
+                  this.g.fillStyle = this.o.fgColor;
+                  this.g.translate(this.xy, this.xy);
+                  this.g.rotate(a.e);
+                  this.g.fillRect(this.radius-(this.lineWidth + 20), -10, this.lineWidth + 15, 10);
+                  this.g.fillStyle = "#000000";
+                  this.g.fillRect(this.radius-(this.lineWidth+12.5), -5, this.lineWidth, 2);
+                  this.g.fillStyle = this.pColor;//"#102945";
+                  this.g.fillRect(this.radius-(this.lineWidth+12.5), -5, this.lineWidth, 2);
+                this.g.restore();
+
                 return false;
             }
         }
